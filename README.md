@@ -6,7 +6,7 @@
 Create [conda](https://docs.conda.io/en/latest/miniconda.html) environment:
 
 ```bash
-$ conda create --name intents_labelling python==3.9.7
+$ conda create --name intents_labelling python==3.8.12
 ```
 
 Activate the environment:
