@@ -4,8 +4,11 @@ from snorkel.labeling.model import LabelModel
 
 
 TRANSACTIONAL = 1
-NON_TRANSACTIONAL = 0
-ABSTAIN = -1
+NAVIGATIONAL = -1
+ABSTAIN = 0
+
+
+"""TRANSACTIONAL Labelling functions"""
 
 
 @labeling_function()
@@ -48,6 +51,17 @@ def lf_transaction_lookup(x):
     )
 
 
+"""NAVIGATIONAL Labelling functions"""
+
+
+@labeling_function()
+def lf_www_lookup(x):
+    keywords = ["www", "http", "https"]
+    return (
+        NAVIGATIONAL if any(word in x.query.lower() for word in keywords) else ABSTAIN
+    )
+
+
 class SnorkelLabelling:
     def __init__(self):
         self.transactional_lfs = [
@@ -56,9 +70,10 @@ class SnorkelLabelling:
             lf_audio_video_lookup,
             lf_extension_lookup,
             lf_transaction_lookup,
+            lf_www_lookup,
         ]
 
-    def predict_transactional(self, df: pd.DataFrame) -> pd.DataFrame:
+    def predict_first_level(self, df: pd.DataFrame) -> pd.DataFrame:
         applier = PandasLFApplier(lfs=self.transactional_lfs)
         L_train = applier.apply(df=df)
 
@@ -68,4 +83,6 @@ class SnorkelLabelling:
         df["Labels"] = label_model.predict(L=L_train, tie_break_policy="abstain")
 
         df.loc[df["Labels"] == TRANSACTIONAL, "Labels"] = "Transactional"
+        df.loc[df["Labels"] == NAVIGATIONAL, "Labels"] = "Navigational"
+        df.loc[df["Labels"] == ABSTAIN, "Labels"] = "Abstain"
         return df
