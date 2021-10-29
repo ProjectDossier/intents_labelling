@@ -8,5 +8,5 @@ if __name__ == "__main__":
     sl = SnorkelLabelling()
     df = sl.predict_transactional(df=df)
 
-    outfile = "../data/output/orcas-small.tsv"
+    outfile = "../data/output/orcas_small.tsv"
     df.to_csv(outfile, sep="\t")
