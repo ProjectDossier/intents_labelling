@@ -12,14 +12,6 @@ ABSTAIN = -1
 
 
 @labeling_function()
-def lf_keyword_lookup(x):
-    keywords = ["why", "what", "when", "who", "where", "how"]
-    return (
-        TRANSACTIONAL if any(word in x.query.lower() for word in keywords) else ABSTAIN
-    )
-
-
-@labeling_function()
 def lf_download_lookup(x):
     keywords = ["download", "obtain"]
     return (
@@ -35,11 +27,16 @@ def lf_audio_video_lookup(x):
     )
 
 
+with open("../data/helpers/common_extensions.txt") as fp:
+    common_extensions_list = [line.strip() for line in fp.readlines()]
+
+
 @labeling_function()
 def lf_extension_lookup(x):
-    keywords = ["jpeg", "zip", "rar", "png", "mp3"]
     return (
-        TRANSACTIONAL if any(word in x.query.lower() for word in keywords) else ABSTAIN
+        TRANSACTIONAL
+        if any(word in x.query.lower().split() for word in common_extensions_list)
+        else ABSTAIN
     )
 
 
@@ -75,16 +72,24 @@ def lf_domain_name_lookup(x):
     )
 
 
+@labeling_function()
+def lf_login_lookup(x):
+    keywords = ["login", "signin", "log in", "sign in", "signup", "sign up"]
+    return (
+        NAVIGATIONAL if any(word in x.query.lower() for word in keywords) else ABSTAIN
+    )
+
+
 class SnorkelLabelling:
     def __init__(self):
         self.lfs = [
-            lf_keyword_lookup,
             lf_download_lookup,
             lf_audio_video_lookup,
             lf_extension_lookup,
             lf_transaction_lookup,
             lf_www_lookup,
             lf_domain_name_lookup,
+            lf_login_lookup,
         ]
 
     def predict_first_level(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -96,7 +101,7 @@ class SnorkelLabelling:
 
         print(LFAnalysis(L=L_train, lfs=self.lfs).lf_summary())
 
-        df["Labels"] = label_model.predict(L=L_train, tie_break_policy="abstain")
+        df.loc[:, "Labels"] = label_model.predict(L=L_train, tie_break_policy="abstain")
 
         df.loc[df["Labels"] == TRANSACTIONAL, "Labels"] = "Transactional"
         df.loc[df["Labels"] == NAVIGATIONAL, "Labels"] = "Navigational"
