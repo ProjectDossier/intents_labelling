@@ -21,4 +21,13 @@ Use pip to install requirements:
 (intents_labelling) $ pip install -r requirements.txt
 ```
 
+Install `spacy` language model:
+
+```bash
+(intents_labelling) $ python -m spacy download en_core_web_sm
+```
+
+
+List of movie titles can be found [here](https://github.com/fivethirtyeight/data/blob/master/bechdel/movies.csv).
+
 Put all data files in `data/input/` directory.

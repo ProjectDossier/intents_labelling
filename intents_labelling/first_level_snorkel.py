@@ -2,10 +2,27 @@ import pandas as pd
 from snorkel.labeling import labeling_function, PandasLFApplier, LFAnalysis
 from snorkel.labeling.model import LabelModel
 
+from snorkel.preprocess.nlp import SpacyPreprocessor
+
+spacy = SpacyPreprocessor(text_field="query", doc_field="doc", memoize=True)
+
 
 TRANSACTIONAL = 1
 NAVIGATIONAL = 0
 ABSTAIN = -1
+
+informational_start_words = [
+    "why",
+    "what",
+    "when",
+    "who",
+    "where",
+    "how",
+    "is",
+    "can",
+    "do",
+    "does",
+]
 
 
 """TRANSACTIONAL Labelling functions"""
@@ -13,7 +30,7 @@ ABSTAIN = -1
 
 @labeling_function()
 def lf_download_lookup(x):
-    keywords = ["download", "obtain"]
+    keywords = ["download", "obtain", "access", "earn", "redeem"]
     return (
         TRANSACTIONAL if any(word in x.query.lower() for word in keywords) else ABSTAIN
     )
@@ -25,6 +42,22 @@ def lf_audio_video_lookup(x):
     return (
         TRANSACTIONAL if any(word in x.query.lower() for word in keywords) else ABSTAIN
     )
+
+
+movies_df = pd.read_csv("../data/helpers/movies.csv")
+movie_names_list = movies_df["title"].str.lower().tolist()
+
+
+@labeling_function(pre=[spacy])
+def lf_movie_name_lookup(x):
+    if x.doc[0].text.lower() in informational_start_words:
+        return ABSTAIN
+    else:
+        return (
+            TRANSACTIONAL
+            if any(movie_name in x.query.lower() for movie_name in movie_names_list)
+            else ABSTAIN
+        )
 
 
 with open("../data/helpers/common_extensions.txt") as fp:
@@ -42,7 +75,19 @@ def lf_extension_lookup(x):
 
 @labeling_function()
 def lf_transaction_lookup(x):
-    keywords = ["online", "free", "transaction", "buy"]
+    keywords = [
+        "online",
+        "free",
+        "transaction",
+        "buy",
+        "chat",
+        "purchase",
+        "shop for",
+        "procure",
+        "complimentary",
+        "gratuitous",
+        "payment",
+    ]
     return (
         TRANSACTIONAL if any(word in x.query.lower() for word in keywords) else ABSTAIN
     )
@@ -80,16 +125,30 @@ def lf_login_lookup(x):
     )
 
 
+@labeling_function(pre=[spacy])
+def lf_has_ner(x):
+    for ent in x.doc.ents:
+        if (
+            ent.label_ in ["ORG", "PERSON"]
+            and x.doc[0].text.lower() not in informational_start_words
+        ):
+            return NAVIGATIONAL
+    else:
+        return ABSTAIN
+
+
 class SnorkelLabelling:
     def __init__(self):
         self.lfs = [
             lf_download_lookup,
             lf_audio_video_lookup,
+            lf_movie_name_lookup,
             lf_extension_lookup,
             lf_transaction_lookup,
             lf_www_lookup,
             lf_domain_name_lookup,
             lf_login_lookup,
+            lf_has_ner,
         ]
 
     def predict_first_level(self, df: pd.DataFrame) -> pd.DataFrame:
