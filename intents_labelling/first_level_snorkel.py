@@ -50,7 +50,10 @@ def lf_download_lookup(x):
     else:
         return (
             FirstLevelIntents.TRANSACTIONAL
-            if any(word in x.query.lower() for word in transactional_keywords)
+            if any(
+                re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+                for word in transactional_keywords
+            )
             else FirstLevelIntents.ABSTAIN
         )
 
@@ -89,23 +92,23 @@ def lf_audio_video_lookup(x):
 #     # url
 
 
-with open("../data/helpers/common_extensions.txt") as fp:
-    common_extensions_list = [line.strip() for line in fp.readlines()]
-
-
-@labeling_function(pre=[spacy])
-def lf_extension_lookup(x):
-    if x.doc[0].text.lower() in informational_start_words:
-        return FirstLevelIntents.ABSTAIN
-    else:
-        return (
-            FirstLevelIntents.TRANSACTIONAL
-            if any(
-                re.search(rf"\s{word}\s", x.query, flags=re.I)
-                for word in common_extensions_list
-            )
-            else FirstLevelIntents.ABSTAIN
-        )
+# with open("../data/helpers/common_extensions.txt") as fp:
+#     common_extensions_list = [line.strip() for line in fp.readlines()]
+#
+#
+# @labeling_function(pre=[spacy])
+# def lf_extension_lookup(x):
+#     if x.doc[0].text.lower() in informational_start_words:
+#         return FirstLevelIntents.ABSTAIN
+#     else:
+#         return (
+#             FirstLevelIntents.TRANSACTIONAL
+#             if any(
+#                 re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+#                 for word in common_extensions_list
+#             )
+#             else FirstLevelIntents.ABSTAIN
+#         )
 
 
 @labeling_function(pre=[spacy])
@@ -128,7 +131,10 @@ def lf_transaction_lookup(x):
     else:
         return (
             FirstLevelIntents.TRANSACTIONAL
-            if any(word in x.query.lower() for word in keywords)
+            if any(
+                re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+                for word in keywords
+            )
             else FirstLevelIntents.ABSTAIN
         )
 
@@ -173,34 +179,38 @@ def lf_login_lookup(x):
     else:
         return (
             FirstLevelIntents.NAVIGATIONAL
-            if any(word in x.query.lower() for word in keywords)
+            if any(
+                re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+                for word in keywords
+            )
             else FirstLevelIntents.ABSTAIN
         )
 
 
-@labeling_function(pre=[spacy])
-def lf_has_ner(x):
-    if x.doc[0].text.lower() in informational_start_words:
-        return FirstLevelIntents.ABSTAIN
-    else:
-        for ent in x.doc.ents:
-            if (
-                ent.label_ in ["ORG", "PERSON"]
-                and x.doc[0].text.lower() not in informational_start_words
-            ):
-                return FirstLevelIntents.NAVIGATIONAL
-        else:
-            return FirstLevelIntents.ABSTAIN
-
+# # to be removed? if url contains wikipedia then it is factual?
+# @labeling_function(pre=[spacy])
+# def lf_has_ner(x):
+#     if x.doc[0].text.lower() in informational_start_words:
+#         return FirstLevelIntents.ABSTAIN
+#     else:
+#         for ent in x.doc.ents:
+#             if (
+#                 ent.label_ in ["ORG", "PERSON"]
+#                 and x.doc[0].text.lower() not in informational_start_words
+#             ):
+#                 return FirstLevelIntents.NAVIGATIONAL
+#         else:
+#             return FirstLevelIntents.ABSTAIN
+#
 
 first_level_functions = [
     lf_download_lookup,
     lf_audio_video_lookup,
     # lf_movie_name_lookup,
-    lf_extension_lookup,
+    # lf_extension_lookup,
     lf_transaction_lookup,
     lf_www_lookup,
     lf_domain_name_lookup,
     lf_login_lookup,
-    lf_has_ner,
+    # lf_has_ner,
 ]

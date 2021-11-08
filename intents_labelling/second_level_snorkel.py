@@ -147,6 +147,16 @@ def lf_imdb_url_lookup(x):
     )
 
 
+# to be removed? if url contains wikipedia then it is factual?
+@labeling_function(pre=[spacy])
+def lf_has_ner(x):
+    for ent in x.doc.ents:
+        if ent.label_ in ["ORG", "PERSON"] and "wikipedia.org" in x.url:
+            return SecondLevelIntents.FACTUAL
+    else:
+        return SecondLevelIntents.ABSTAIN
+
+
 second_level_functions = [
     lf_is_verb,
     lf_howto,
@@ -159,4 +169,5 @@ second_level_functions = [
     lf_definition,
     lf_digit,
     lf_imdb_url_lookup,
+    lf_has_ner,
 ]
