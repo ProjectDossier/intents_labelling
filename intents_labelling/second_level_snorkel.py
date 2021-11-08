@@ -150,7 +150,28 @@ def lf_imdb_url_lookup(x):
 @labeling_function(pre=[spacy])
 def lf_has_ner(x):
     for ent in x.doc.ents:
-        if ent.label_ in ["ORG", "PERSON"] and "wikipedia.org" in x.url:
+        if (
+            ent.label_
+            in [
+                "ORG",
+                "PERSON",
+                "CARDINAL",
+                "DATE",
+                "EVENT",
+                "FAC",
+                "LAW",
+                "LOC",
+                "MONEY",
+                "NORP",
+                "ORDINAL",
+                "PERCENT",
+                "PRODUCT",
+                "QUANTITY",
+                "TIME",
+                "WORK_OF_ART",
+            ]
+            and "wikipedia.org" in x.url
+        ):
             return SecondLevelIntents.FACTUAL
     else:
         return SecondLevelIntents.ABSTAIN

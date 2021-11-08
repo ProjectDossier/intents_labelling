@@ -3,7 +3,7 @@ from intents_labelling.snorkel_labelling import SnorkelLabelling
 
 if __name__ == "__main__":
     df = load_orcas()
-    df = df.sample(1000000)
+    df = df.sample(1000, random_state=42)
 
     sl = SnorkelLabelling()
     df = sl.predict_first_level(df=df)
