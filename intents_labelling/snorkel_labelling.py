@@ -2,7 +2,7 @@ import pandas as pd
 from snorkel.labeling import PandasLFApplier, LFAnalysis
 from snorkel.labeling.model import LabelModel
 
-from first_level_snorkel import FirsLevelIntents, first_level_functions
+from first_level_snorkel import FirstLevelIntents, first_level_functions
 from second_level_snorkel import SecondLevelIntents, second_level_functions
 
 
@@ -28,15 +28,15 @@ class SnorkelLabelling:
         )
 
         df.loc[
-            df[self.first_level_column] == FirsLevelIntents.TRANSACTIONAL,
+            df[self.first_level_column] == FirstLevelIntents.TRANSACTIONAL,
             self.first_level_column,
         ] = "Transactional"
         df.loc[
-            df[self.first_level_column] == FirsLevelIntents.NAVIGATIONAL,
+            df[self.first_level_column] == FirstLevelIntents.NAVIGATIONAL,
             self.first_level_column,
         ] = "Navigational"
         df.loc[
-            df[self.first_level_column] == FirsLevelIntents.ABSTAIN,
+            df[self.first_level_column] == FirstLevelIntents.ABSTAIN,
             self.first_level_column,
         ] = "Abstain"
 
@@ -66,7 +66,7 @@ class SnorkelLabelling:
             self.second_level_column,
         ] = "Instrumental"
         df.loc[
-            df[self.second_level_column] == FirsLevelIntents.ABSTAIN,
+            df[self.second_level_column] == FirstLevelIntents.ABSTAIN,
             self.second_level_column,
         ] = "Abstain"
 
