@@ -29,8 +29,6 @@ informational_start_words = [
 
 """TRANSACTIONAL Labelling functions"""
 
-# first word == watch to transactional
-
 
 @labeling_function(pre=[spacy])
 def lf_download_lookup(x):
@@ -69,46 +67,6 @@ def lf_audio_video_lookup(x):
             if any(word in x.query.lower() for word in keywords)
             else FirstLevelIntents.ABSTAIN
         )
-
-
-# movies_df = pd.read_csv("../data/helpers/movies.csv")
-# movie_names_list = movies_df["title"].str.lower().tolist()
-#
-#
-# @labeling_function(pre=[spacy])
-# def lf_movie_name_lookup(x):
-#     if x.doc[0].text.lower() in informational_start_words:
-#         return FirstLevelIntents.ABSTAIN
-#     else:
-#         return (
-#             FirstLevelIntents.TRANSACTIONAL
-#             if any(
-#                 movie_name.strip() == x.query.lower().strip()
-#                 for movie_name in movie_names_list
-#             )
-#             else FirstLevelIntents.ABSTAIN
-#         )
-#
-#     # url
-
-
-# with open("../data/helpers/common_extensions.txt") as fp:
-#     common_extensions_list = [line.strip() for line in fp.readlines()]
-#
-#
-# @labeling_function(pre=[spacy])
-# def lf_extension_lookup(x):
-#     if x.doc[0].text.lower() in informational_start_words:
-#         return FirstLevelIntents.ABSTAIN
-#     else:
-#         return (
-#             FirstLevelIntents.TRANSACTIONAL
-#             if any(
-#                 re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
-#                 for word in common_extensions_list
-#             )
-#             else FirstLevelIntents.ABSTAIN
-#         )
 
 
 @labeling_function(pre=[spacy])
@@ -187,30 +145,11 @@ def lf_login_lookup(x):
         )
 
 
-# # to be removed? if url contains wikipedia then it is factual?
-# @labeling_function(pre=[spacy])
-# def lf_has_ner(x):
-#     if x.doc[0].text.lower() in informational_start_words:
-#         return FirstLevelIntents.ABSTAIN
-#     else:
-#         for ent in x.doc.ents:
-#             if (
-#                 ent.label_ in ["ORG", "PERSON"]
-#                 and x.doc[0].text.lower() not in informational_start_words
-#             ):
-#                 return FirstLevelIntents.NAVIGATIONAL
-#         else:
-#             return FirstLevelIntents.ABSTAIN
-#
-
 first_level_functions = [
     lf_download_lookup,
     lf_audio_video_lookup,
-    # lf_movie_name_lookup,
-    # lf_extension_lookup,
     lf_transaction_lookup,
     lf_www_lookup,
     lf_domain_name_lookup,
     lf_login_lookup,
-    # lf_has_ner,
 ]
