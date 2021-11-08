@@ -1,5 +1,6 @@
-import pandas as pd
 import csv
+
+import pandas as pd
 
 
 def load_orcas(data_path: str = "../data/input/orcas_small.tsv") -> pd.DataFrame:
