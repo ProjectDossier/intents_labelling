@@ -18,7 +18,20 @@ class SecondLevelIntents(IntEnum):
 
 @labeling_function(pre=[spacy])
 def lf_is_verb(x):
-    if x.doc[0].pos_ == "VERB" and x.doc[0].text == x.doc[0].lemma_:
+    transactional_keywords = [
+        "download",
+        "obtain",
+        "access",
+        "earn",
+        "redeem",
+        "watch",
+        "install",
+        "play",
+        "listen",
+    ]
+    if x.doc[0].text in transactional_keywords:
+        return SecondLevelIntents.ABSTAIN
+    elif x.doc[0].pos_ == "VERB" and x.doc[0].text == x.doc[0].lemma_:
         return SecondLevelIntents.INSTRUMENTAL
     else:
         return SecondLevelIntents.ABSTAIN
@@ -26,10 +39,20 @@ def lf_is_verb(x):
 
 @labeling_function()
 def lf_howto(x):
-    keywords = ["how to"]
+    keywords = ["how to", "how do"]
     return (
         SecondLevelIntents.INSTRUMENTAL
         if any(word in x.query.lower() for word in keywords)
+        else SecondLevelIntents.ABSTAIN
+    )
+
+
+@labeling_function()
+def lf_wikihow_lookup(x):
+    urls = ["www.wikihow.com"]
+    return (
+        SecondLevelIntents.INSTRUMENTAL
+        if any(url in x.url.lower() for url in urls)
         else SecondLevelIntents.ABSTAIN
     )
 
@@ -109,9 +132,25 @@ def lf_digit(x):
     )
 
 
+@labeling_function()
+def lf_imdb_url_lookup(x):
+    urls = [
+        "www.imdb.com/title",
+        "www.accuweather.com",
+        "weather.com",
+        "www.goodreads.com",
+    ]
+    return (
+        SecondLevelIntents.FACTUAL
+        if any(url in x.url.lower() for url in urls)
+        else SecondLevelIntents.ABSTAIN
+    )
+
+
 second_level_functions = [
     lf_is_verb,
     lf_howto,
+    lf_wikihow_lookup,
     lf_keyword_lookup,
     lf_question_words,
     lf_facts_lookup,
@@ -119,4 +158,5 @@ second_level_functions = [
     lf_phone,
     lf_definition,
     lf_digit,
+    lf_imdb_url_lookup,
 ]
