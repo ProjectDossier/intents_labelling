@@ -54,14 +54,13 @@ def lf_is_ing_verb(x):
     if x.doc[0].text in transactional_keywords:
         return SecondLevelIntents.ABSTAIN
     elif x.doc[0].pos_ == "VERB" and "ing" in x.doc[0].text:
-        print(x.doc[0].text)
         return SecondLevelIntents.INSTRUMENTAL
     else:
         return SecondLevelIntents.ABSTAIN
 
 @labeling_function()
 def lf_howto(x):
-    keywords = ["how to", "how do","how can"]
+    keywords = ["how to", "how do","how can","how does"]
     return (
         SecondLevelIntents.INSTRUMENTAL
         if any(word in x.query.lower() for word in keywords)
@@ -85,12 +84,14 @@ def lf_wikihow_lookup(x):
 @labeling_function()
 def lf_keyword_lookup(x):
     keywords = ["why", "what", "when", "who", "where", "how"]
+    how_words = ["how to","how do","how does","how can"]
     return (
         SecondLevelIntents.FACTUAL
         if any(
-            word in x.query.lower() and "how to" not in x.query.lower()
+            word in x.query.lower()
             for word in keywords
-        )
+        ) and not any(word in x.query.lower()
+            for word in how_words)
         else SecondLevelIntents.ABSTAIN
     )
 
@@ -205,8 +206,8 @@ def lf_has_ner(x):
 
 second_level_functions = [
     lf_is_verb,
-    lf_is_ing_verb,
     lf_howto,
+    lf_is_ing_verb,
     lf_wikihow_lookup,
     lf_keyword_lookup,
     lf_question_words,
