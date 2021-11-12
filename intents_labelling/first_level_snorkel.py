@@ -25,7 +25,50 @@ informational_start_words = [
     "can",
     "do",
     "does",
+    "did"
 ]
+
+factual_keywords = [
+    "define",
+    "definition",
+    "meaning",
+    "phone",
+    "code",
+    "number",
+    "zip",
+    "facts",
+    "statistics",
+    "quantity",
+    "quantities",
+    "recipe",
+    "side effects",
+    "weather",
+    "average",
+    "sum",
+    "cost",
+    "amount",
+    "salary",
+    "salaries",
+    "pay",
+]
+transactional_keywords = [
+        "download",
+        "obtain",
+        "access",
+        "earn",
+        "redeem",
+        "watch",
+        "install",
+        "play",
+        "listen",
+        "online",
+        "free",
+        "buy",
+        "payment",
+        "audio",
+        "video",
+        "image",
+    ]
 
 """TRANSACTIONAL Labelling functions"""
 
@@ -42,6 +85,7 @@ def lf_download_lookup(x):
         "install",
         "play",
         "listen",
+        "loader",
     ]
     if x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
@@ -131,7 +175,7 @@ def lf_domain_name_lookup(x):
 
 @labeling_function(pre=[spacy])
 def lf_login_lookup(x):
-    keywords = ["login", "signin", "log in", "sign in", "signup", "sign up"]
+    keywords = ["login", "signin", "log in", "sign in", "signup", "sign up","site","account"]
     if x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
     else:
@@ -144,8 +188,35 @@ def lf_login_lookup(x):
             else FirstLevelIntents.ABSTAIN
         )
 
+@labeling_function(pre=[spacy])
+def lf_match_url(x):
+    if any(word in x.query.lower() for word in transactional_keywords):
+        return FirstLevelIntents.TRANSACTIONAL
+    elif any(word in x.query.lower() for word in factual_keywords):
+        return FirstLevelIntents.ABSTAIN
+    elif x.doc[0].text.lower() in informational_start_words:
+        return FirstLevelIntents.ABSTAIN
+    else:
+        li = list(x.query.lower().split(" "))
+        r1 = re.search(r'https:\/\/www\.(.*?)\/', x.url)
+        r2 = re.search(r'http:\/\/www\.(.*?)\/', x.url)
+        r3 = re.search(r'http:(.*?)\/', x.url)
+        st = ""
+        if r1:
+            st = r1.group(1)
+        elif r2:
+            st = r2.group(1)
+        elif r3:
+            st = r3.group(1)
+        return (
+            FirstLevelIntents.NAVIGATIONAL
+            if any(word in st.lower() for word in li)
+            else FirstLevelIntents.ABSTAIN
+        )
+
 
 first_level_functions = [
+    lf_match_url,
     lf_download_lookup,
     lf_audio_video_lookup,
     lf_transaction_lookup,
