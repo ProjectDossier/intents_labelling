@@ -18,6 +18,7 @@ class SecondLevelIntents(IntEnum):
 with open("../data/helpers/verbs.txt") as fp:
     verb_list = [line.strip() for line in fp.readlines()]
 
+
 @labeling_function(pre=[spacy])
 def lf_is_verb(x):
     transactional_keywords = [
@@ -33,10 +34,15 @@ def lf_is_verb(x):
     ]
     if x.doc[0].text in transactional_keywords:
         return SecondLevelIntents.ABSTAIN
-    elif x.doc[0].pos_ == "VERB" and x.doc[0].text == x.doc[0].lemma_ and x.doc[0].text in verb_list:
+    elif (
+        x.doc[0].pos_ == "VERB"
+        and x.doc[0].text == x.doc[0].lemma_
+        and x.doc[0].text in verb_list
+    ):
         return SecondLevelIntents.INSTRUMENTAL
     else:
         return SecondLevelIntents.ABSTAIN
+
 
 @labeling_function(pre=[spacy])
 def lf_is_ing_verb(x):
@@ -58,9 +64,10 @@ def lf_is_ing_verb(x):
     else:
         return SecondLevelIntents.ABSTAIN
 
+
 @labeling_function()
 def lf_howto(x):
-    keywords = ["how to", "how do","how can","how does"]
+    keywords = ["how to", "how do", "how can", "how does"]
     return (
         SecondLevelIntents.INSTRUMENTAL
         if any(word in x.query.lower() for word in keywords)
@@ -84,21 +91,18 @@ def lf_wikihow_lookup(x):
 @labeling_function()
 def lf_keyword_lookup(x):
     keywords = ["why", "what", "when", "who", "where", "how"]
-    how_words = ["how to","how do","how does","how can"]
+    how_words = ["how to", "how do", "how does", "how can"]
     return (
         SecondLevelIntents.FACTUAL
-        if any(
-            word in x.query.lower()
-            for word in keywords
-        ) and not any(word in x.query.lower()
-            for word in how_words)
+        if any(word in x.query.lower() for word in keywords)
+        and not any(word in x.query.lower() for word in how_words)
         else SecondLevelIntents.ABSTAIN
     )
 
 
 @labeling_function()
 def lf_question_words(x):
-    keywords = ["is", "can", "do", "does","did"]
+    keywords = ["is", "can", "do", "does", "did"]
     return (
         SecondLevelIntents.FACTUAL
         if any(x.query.lower().startswith(word) for word in keywords)
@@ -108,7 +112,14 @@ def lf_question_words(x):
 
 @labeling_function()
 def lf_facts_lookup(x):
-    keywords = ["facts", "statistics", "quantity", "quantities","recipe","side effects"]
+    keywords = [
+        "facts",
+        "statistics",
+        "quantity",
+        "quantities",
+        "recipe",
+        "side effects",
+    ]
     return (
         SecondLevelIntents.FACTUAL
         if any(word in x.query.lower() for word in keywords)
@@ -168,6 +179,7 @@ def lf_imdb_url_lookup(x):
         if any(url in x.url.lower() for url in urls)
         else SecondLevelIntents.ABSTAIN
     )
+
 
 @labeling_function()
 def lf_test(x):

@@ -25,7 +25,7 @@ informational_start_words = [
     "can",
     "do",
     "does",
-    "did"
+    "did",
 ]
 
 factual_keywords = [
@@ -52,23 +52,23 @@ factual_keywords = [
     "pay",
 ]
 transactional_keywords = [
-        "download",
-        "obtain",
-        "access",
-        "earn",
-        "redeem",
-        "watch",
-        "install",
-        "play",
-        "listen",
-        "online",
-        "free",
-        "buy",
-        "payment",
-        "audio",
-        "video",
-        "image",
-    ]
+    "download",
+    "obtain",
+    "access",
+    "earn",
+    "redeem",
+    "watch",
+    "install",
+    "play",
+    "listen",
+    "online",
+    "free",
+    "buy",
+    "payment",
+    "audio",
+    "video",
+    "image",
+]
 
 """TRANSACTIONAL Labelling functions"""
 
@@ -175,7 +175,16 @@ def lf_domain_name_lookup(x):
 
 @labeling_function(pre=[spacy])
 def lf_login_lookup(x):
-    keywords = ["login", "signin", "log in", "sign in", "signup", "sign up","site","account"]
+    keywords = [
+        "login",
+        "signin",
+        "log in",
+        "sign in",
+        "signup",
+        "sign up",
+        "site",
+        "account",
+    ]
     if x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
     else:
@@ -188,6 +197,7 @@ def lf_login_lookup(x):
             else FirstLevelIntents.ABSTAIN
         )
 
+
 @labeling_function(pre=[spacy])
 def lf_match_url(x):
     if any(word in x.query.lower() for word in transactional_keywords):
@@ -198,9 +208,9 @@ def lf_match_url(x):
         return FirstLevelIntents.ABSTAIN
     else:
         li = list(x.query.lower().split(" "))
-        r1 = re.search(r'https:\/\/www\.(.*?)\/', x.url)
-        r2 = re.search(r'http:\/\/www\.(.*?)\/', x.url)
-        r3 = re.search(r'http:(.*?)\/', x.url)
+        r1 = re.search(r"https:\/\/www\.(.*?)\/", x.url)
+        r2 = re.search(r"http:\/\/www\.(.*?)\/", x.url)
+        r3 = re.search(r"http:(.*?)\/", x.url)
         st = ""
         if r1:
             st = r1.group(1)
