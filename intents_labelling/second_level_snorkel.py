@@ -15,7 +15,7 @@ class SecondLevelIntents(IntEnum):
 
 """INSTRUMENTAL Labelling functions"""
 
-with open("../data/helpers/verbs.txt") as fp:
+with open("data/helpers/verbs.txt") as fp:
     verb_list = [line.strip() for line in fp.readlines()]
 
 

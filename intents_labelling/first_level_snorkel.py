@@ -157,7 +157,7 @@ def lf_www_lookup(x):
         )
 
 
-with open("../data/helpers/top_level_domains.txt") as fp:
+with open("data/helpers/top_level_domains.txt") as fp:
     domain_names_list = [line.strip() for line in fp.readlines()]
 
 
