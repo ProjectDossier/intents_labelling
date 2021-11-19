@@ -38,3 +38,25 @@ Install `spacy` language model:
 List of movie titles can be found [here](https://github.com/fivethirtyeight/data/blob/master/bechdel/movies.csv).
 
 Put all data files in `data/input/` directory.
+
+
+## Usage 
+
+Create a training set which will be a sample of ORCAS dataset. Filter out testset examples
+
+```bash
+(intents_labelling) $ python intents_labelling/create_train_file.py
+```
+
+Create snorkel annotations
+
+```bash
+(intents_labelling) $ python intents_labelling/main.py
+```
+
+Train Bert model
+
+```bash
+(intents_labelling) $ python intents_labelling/models/train_bert_classifier.py
+```
+
