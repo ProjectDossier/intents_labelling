@@ -5,7 +5,9 @@ import pandas as pd
 from snorkel.labeling import labeling_function
 from snorkel.preprocess.nlp import SpacyPreprocessor
 
-spacy = SpacyPreprocessor(text_field="query", doc_field="doc",language='en_core_web_lg', memoize=True)
+spacy = SpacyPreprocessor(
+    text_field="query", doc_field="doc", language="en_core_web_lg", memoize=True
+)
 
 
 class FirstLevelIntents(IntEnum):
@@ -71,15 +73,15 @@ transactional_keywords = [
 ]
 
 ne_labels = [
-                "ORG",
-                "PERSON",
-                "EVENT",
-                "FAC",
-                "LOC",
-                "GPE",
-                "PRODUCT",
-                "WORK_OF_ART",
-            ]
+    "ORG",
+    "PERSON",
+    "EVENT",
+    "FAC",
+    "LOC",
+    "GPE",
+    "PRODUCT",
+    "WORK_OF_ART",
+]
 
 
 """TRANSACTIONAL Labelling functions"""
@@ -117,7 +119,7 @@ def lf_audio_video_lookup(x):
     if x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
     else:
-        keywords = ["audio", "video", "image", "images","calculator"]
+        keywords = ["audio", "video", "image", "images", "calculator"]
         return (
             FirstLevelIntents.TRANSACTIONAL
             if any(word in x.query.lower() for word in keywords)
@@ -240,6 +242,7 @@ def lf_match_url(x):
             else FirstLevelIntents.ABSTAIN
         )
 
+
 @labeling_function(pre=[spacy])
 def lf_match_url2(x):
     if any(word in x.query.lower() for word in transactional_keywords):
@@ -260,12 +263,11 @@ def lf_match_url2(x):
         elif r3:
             st = r3.group(1)
         for ent in x.doc.ents:
-            if (ent.label_ in ne_labels):
+            if ent.label_ in ne_labels:
                 l = ent.text.lower().split(" ")
                 if any(words in st for words in l):
                     return FirstLevelIntents.NAVIGATIONAL
         return FirstLevelIntents.ABSTAIN
-
 
 
 first_level_functions = [

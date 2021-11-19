@@ -4,7 +4,9 @@ from enum import IntEnum
 from snorkel.labeling import labeling_function
 from snorkel.preprocess.nlp import SpacyPreprocessor
 
-spacy = SpacyPreprocessor(text_field="query", doc_field="doc",language='en_core_web_lg',memoize=True)
+spacy = SpacyPreprocessor(
+    text_field="query", doc_field="doc", language="en_core_web_lg", memoize=True
+)
 
 
 class SecondLevelIntents(IntEnum):
@@ -12,16 +14,17 @@ class SecondLevelIntents(IntEnum):
     FACTUAL = 0
     ABSTAIN = -1
 
+
 ne_labels = [
-                "ORG",
-                "PERSON",
-                "EVENT",
-                "FAC",
-                "LOC",
-                "GPE",
-                "PRODUCT",
-                "WORK_OF_ART",
-            ]
+    "ORG",
+    "PERSON",
+    "EVENT",
+    "FAC",
+    "LOC",
+    "GPE",
+    "PRODUCT",
+    "WORK_OF_ART",
+]
 """INSTRUMENTAL Labelling functions"""
 
 with open("data/helpers/verbs.txt") as fp:
@@ -86,7 +89,12 @@ def lf_howto(x):
 
 @labeling_function()
 def lf_wikihow_lookup(x):
-    urls = ["www.wikihow.com","support.apple.com","support.office.com","support.google.com"]
+    urls = [
+        "www.wikihow.com",
+        "support.apple.com",
+        "support.office.com",
+        "support.google.com",
+    ]
     return (
         SecondLevelIntents.INSTRUMENTAL
         if any(url in x.url.lower() for url in urls)
@@ -158,7 +166,7 @@ def lf_phone(x):
 
 @labeling_function()
 def lf_definition(x):
-    keywords = ["define", "definition", "meaning","example","side effect"]
+    keywords = ["define", "definition", "meaning", "example", "side effect"]
     return (
         SecondLevelIntents.FACTUAL
         if any(word in x.query.lower() for word in keywords)
@@ -185,13 +193,11 @@ def lf_url_lookup(x):
         "drugs.com",
         "imdb.com",
         "dictionary.com",
-        "reference.com"
-        "britannica.com",
+        "reference.com" "britannica.com",
         "timeanddate.com",
         "allrecipes.com",
         "thesaurus.com",
         "thefreedictionary.com",
-
     ]
     return (
         SecondLevelIntents.FACTUAL
@@ -200,12 +206,18 @@ def lf_url_lookup(x):
     )
 
 
-
 @labeling_function(pre=[spacy])
 def lf_has_ner(x):
-    sites_f = ["thoughtco.com","wikipedia.org","healthline.com","mayoclinic.org","medicinenet.com","webmd.com"]
+    sites_f = [
+        "thoughtco.com",
+        "wikipedia.org",
+        "healthline.com",
+        "mayoclinic.org",
+        "medicinenet.com",
+        "webmd.com",
+    ]
     for ent in x.doc.ents:
-        if (ent.label_ in ne_labels and any(url in x.url.lower() for url in sites_f)):
+        if ent.label_ in ne_labels and any(url in x.url.lower() for url in sites_f):
             return SecondLevelIntents.FACTUAL
     return SecondLevelIntents.ABSTAIN
 
