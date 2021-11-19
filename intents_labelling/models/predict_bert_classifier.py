@@ -1,12 +1,14 @@
+import argparse
+import json
+import os
+
+import numpy as np
 import torch
 from torch.utils.data import DataLoader, SequentialSampler, TensorDataset
 from transformers import BertForSequenceClassification, BertTokenizer
+
 from intents_labelling.data_loaders import load_labelled_orcas
-import os
-import json
-import argparse
 from intents_labelling.models.helpers import evaluate, f1_score_func, accuracy_per_class
-import numpy as np
 
 
 def read_labels(infile):

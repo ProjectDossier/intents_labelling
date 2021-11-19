@@ -1,9 +1,8 @@
+import numpy as np
 import torch
 from sklearn.metrics import f1_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
-import random
-import numpy as np
 
 
 def f1_score_func(preds, labels):
@@ -46,7 +45,6 @@ def evaluate(dataloader_val, model, device):
     predictions, true_vals = [], []
 
     for batch in dataloader_val:
-        print(batch)
         batch = tuple(b.to(device) for b in batch)
 
         inputs = {

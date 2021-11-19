@@ -1,21 +1,20 @@
+import argparse
+import json
 import os.path
+import random
 from typing import Dict, List
 
-import torch
-from tqdm.notebook import tqdm
-
-from transformers import BertTokenizer
-from transformers import BertForSequenceClassification
-
-from torch.utils.data import TensorDataset
-import argparse
-
 import numpy as np
-from intents_labelling.data_loaders import load_labelled_orcas
-import json
-
+import torch
 from sklearn.model_selection import train_test_split
+from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
+from torch.utils.data import TensorDataset
+from tqdm.auto import tqdm
+from transformers import AdamW, get_linear_schedule_with_warmup
+from transformers import BertForSequenceClassification
+from transformers import BertTokenizer
 
+from intents_labelling.data_loaders import load_labelled_orcas
 from intents_labelling.models.helpers import (
     f1_score_func,
     recall_score_func,
@@ -130,8 +129,6 @@ if __name__ == "__main__":
 
     # %%
 
-    from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
-
     batch_size = 32
 
     dataloader_train = DataLoader(
@@ -144,8 +141,6 @@ if __name__ == "__main__":
 
     # %%
 
-    from transformers import AdamW, get_linear_schedule_with_warmup
-
     optimizer = AdamW(model.parameters(), lr=1e-5, eps=1e-8)
 
     # %%
@@ -155,9 +150,6 @@ if __name__ == "__main__":
     scheduler = get_linear_schedule_with_warmup(
         optimizer, num_warmup_steps=0, num_training_steps=len(dataloader_train) * epochs
     )
-
-    import random
-    import numpy as np
 
     torch.cuda.empty_cache()
     seed_val = 17
@@ -172,10 +164,6 @@ if __name__ == "__main__":
     model.to(device)
 
     print(device)
-
-    # %%
-
-    # %%
 
     for epoch in tqdm(range(1, epochs + 1)):
 
@@ -215,7 +203,10 @@ if __name__ == "__main__":
                 {"training_loss": "{:.3f}".format(loss.item() / len(batch))}
             )
 
-        torch.save(model.state_dict(), f"finetuned_BERT_epoch_{epoch}.model")
+        torch.save(
+            model.state_dict(),
+            f"{args.out_path}/{args.model_name}/finetuned_BERT_epoch_{epoch}.model",
+        )
 
         tqdm.write(f"\nEpoch {epoch}")
 
