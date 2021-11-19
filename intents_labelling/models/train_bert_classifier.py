@@ -77,9 +77,6 @@ if __name__ == "__main__":
     tokenizer = BertTokenizer.from_pretrained("bert-base-uncased", do_lower_case=True)
 
     df[data_column] = df[data_column].replace(np.nan, "0")
-    for el in df[df.data_type == "train"][data_column].values:
-        if not isinstance(el, str):
-            print(el, type(el))
 
     encoded_data_train = tokenizer.batch_encode_plus(
         df[df.data_type == "train"][data_column].values,
