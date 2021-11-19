@@ -1,9 +1,9 @@
-from data_loaders import load_unlabelled_orcas, save_orcas
+from data_loaders import load_labelled_orcas, save_orcas
 from snorkel_labelling import SnorkelLabelling
 
 if __name__ == "__main__":
-    df = load_unlabelled_orcas()
-    df = df.sample(10000, random_state=42)
+
+    df = load_labelled_orcas(data_path="data/input/orcas_train_1000000.tsv")
 
     sl = SnorkelLabelling()
     df = sl.predict_first_level(df=df)
