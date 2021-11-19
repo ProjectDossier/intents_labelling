@@ -5,7 +5,7 @@ import pandas as pd
 from snorkel.labeling import labeling_function
 from snorkel.preprocess.nlp import SpacyPreprocessor
 
-spacy = SpacyPreprocessor(text_field="query", doc_field="doc", memoize=True)
+spacy = SpacyPreprocessor(text_field="query", doc_field="doc",language='en_core_web_lg', memoize=True)
 
 
 class FirstLevelIntents(IntEnum):
@@ -70,6 +70,18 @@ transactional_keywords = [
     "image",
 ]
 
+ne_labels = [
+                "ORG",
+                "PERSON",
+                "EVENT",
+                "FAC",
+                "LOC",
+                "GPE",
+                "PRODUCT",
+                "WORK_OF_ART",
+            ]
+
+
 """TRANSACTIONAL Labelling functions"""
 
 
@@ -105,7 +117,7 @@ def lf_audio_video_lookup(x):
     if x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
     else:
-        keywords = ["audio", "video", "image", "images"]
+        keywords = ["audio", "video", "image", "images","calculator"]
         return (
             FirstLevelIntents.TRANSACTIONAL
             if any(word in x.query.lower() for word in keywords)
@@ -127,6 +139,10 @@ def lf_transaction_lookup(x):
         "complimentary",
         "gratuitous",
         "payment",
+        "converter",
+        "convertor",
+        "viewer",
+        "crop",
     ]
     if x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
@@ -224,9 +240,36 @@ def lf_match_url(x):
             else FirstLevelIntents.ABSTAIN
         )
 
+@labeling_function(pre=[spacy])
+def lf_match_url2(x):
+    if any(word in x.query.lower() for word in transactional_keywords):
+        return FirstLevelIntents.TRANSACTIONAL
+    elif any(word in x.query.lower() for word in factual_keywords):
+        return FirstLevelIntents.ABSTAIN
+    elif x.doc[0].text.lower() in informational_start_words:
+        return FirstLevelIntents.ABSTAIN
+    else:
+        r1 = re.search(r"https:\/\/www\.(.*?)\/", x.url)
+        r2 = re.search(r"http:\/\/www\.(.*?)\/", x.url)
+        r3 = re.search(r"http:(.*?)\/", x.url)
+        st = ""
+        if r1:
+            st = r1.group(1)
+        elif r2:
+            st = r2.group(1)
+        elif r3:
+            st = r3.group(1)
+        for ent in x.doc.ents:
+            if (ent.label_ in ne_labels):
+                l = ent.text.lower().split(" ")
+                if any(words in st for words in l):
+                    return FirstLevelIntents.NAVIGATIONAL
+        return FirstLevelIntents.ABSTAIN
+
+
 
 first_level_functions = [
-    lf_match_url,
+    lf_match_url2,
     lf_download_lookup,
     lf_audio_video_lookup,
     lf_transaction_lookup,
