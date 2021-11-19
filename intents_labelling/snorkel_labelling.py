@@ -73,3 +73,13 @@ class SnorkelLabelling:
         print(df[self.second_level_column].value_counts())
 
         return df
+
+    def create_final_label(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Creates a column with final label concatenating first and second level."""
+        label_column = "Label"
+
+        df[label_column] = df[self.first_level_column]
+        df.loc[df[label_column] == "Abstain", label_column] = df.loc[
+            df[label_column] == "Abstain", self.second_level_column
+        ]
+        return df

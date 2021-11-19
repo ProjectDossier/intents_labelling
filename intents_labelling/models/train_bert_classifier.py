@@ -8,7 +8,7 @@ from transformers import BertTokenizer
 from transformers import BertForSequenceClassification
 
 from torch.utils.data import TensorDataset
-
+import argparse
 
 import numpy as np
 from intents_labelling.data_loaders import load_labelled_orcas
@@ -32,23 +32,31 @@ def get_label_dict(labels: List[str]) -> Dict[str, int]:
 
 
 if __name__ == "__main__":
-    out_path = "models/bert/"
-    model_name = "bert_query"
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model_name", default="bert_query", type=str)
+    parser.add_argument("--infile", default="data/output/orcas_10000.tsv", type=str)
+    parser.add_argument("--out_path", default="models/bert/", type=str)
+
+    args = parser.parse_args()
+
+    # args.out_path = "models/bert/"
+    # args.model_name = "bert_query"
     labels_file = "labels.json"
 
-    if not os.path.exists(f"{out_path}/{model_name}"):
-        os.makedirs(f"{out_path}/{model_name}")
+    if not os.path.exists(f"{args.out_path}/{args.model_name}"):
+        os.makedirs(f"{args.out_path}/{args.model_name}")
 
-    infile = "data/output/orcas_10000.tsv"
+    # args.infile = "data/output/orcas_10000.tsv"
 
     label_column = "Label"
     data_column = "query"
 
-    df = load_labelled_orcas(data_path=infile)
+    df = load_labelled_orcas(data_path=args.infile)
 
     label_dict = get_label_dict(df[label_column].unique().tolist())
 
-    with open(f"{out_path}/{model_name}/{labels_file}", "w") as outfile:
+    with open(f"{args.out_path}/{args.model_name}/{labels_file}", "w") as outfile:
         json.dump(label_dict, outfile)
 
     df["label"] = df[label_column].replace(label_dict)
@@ -102,128 +110,125 @@ if __name__ == "__main__":
     attention_masks_val = encoded_data_val["attention_mask"]
     labels_val = torch.tensor(df[df.data_type == "val"].label.values)
 
-# %%
+    # %%
 
-dataset_train = TensorDataset(input_ids_train, attention_masks_train, labels_train)
-dataset_val = TensorDataset(input_ids_val, attention_masks_val, labels_val)
+    dataset_train = TensorDataset(input_ids_train, attention_masks_train, labels_train)
+    dataset_val = TensorDataset(input_ids_val, attention_masks_val, labels_val)
 
-# %%
+    # %%
 
-len(dataset_train), len(dataset_val)
+    len(dataset_train), len(dataset_val)
 
-# %%
+    # %%
 
-model = BertForSequenceClassification.from_pretrained(
-    "bert-base-uncased",
-    num_labels=len(label_dict),
-    output_attentions=False,
-    output_hidden_states=False,
-)
-
-# %%
-
-from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
-
-batch_size = 32
-
-dataloader_train = DataLoader(
-    dataset_train, sampler=RandomSampler(dataset_train), batch_size=batch_size
-)
-
-dataloader_validation = DataLoader(
-    dataset_val, sampler=SequentialSampler(dataset_val), batch_size=batch_size
-)
-
-# %%
-
-from transformers import AdamW, get_linear_schedule_with_warmup
-
-optimizer = AdamW(model.parameters(), lr=1e-5, eps=1e-8)
-
-# %%
-
-epochs = 10
-
-scheduler = get_linear_schedule_with_warmup(
-    optimizer, num_warmup_steps=0, num_training_steps=len(dataloader_train) * epochs
-)
-
-
-import random
-import numpy as np
-
-torch.cuda.empty_cache()
-seed_val = 17
-random.seed(seed_val)
-np.random.seed(seed_val)
-torch.manual_seed(seed_val)
-torch.cuda.manual_seed_all(seed_val)
-
-# %%
-
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model.to(device)
-
-print(device)
-
-
-# %%
-
-
-# %%
-
-
-for epoch in tqdm(range(1, epochs + 1)):
-
-    model.train()
-
-    loss_train_total = 0
-
-    progress_bar = tqdm(
-        dataloader_train, desc="Epoch {:1d}".format(epoch), leave=False, disable=False
+    model = BertForSequenceClassification.from_pretrained(
+        "bert-base-uncased",
+        num_labels=len(label_dict),
+        output_attentions=False,
+        output_hidden_states=False,
     )
-    for batch in progress_bar:
-        model.zero_grad()
 
-        batch = tuple(b.to(device) for b in batch)
+    # %%
 
-        inputs = {
-            "input_ids": batch[0],
-            "attention_mask": batch[1],
-            "labels": batch[2],
-        }
+    from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 
-        outputs = model(**inputs)
+    batch_size = 32
 
-        loss = outputs[0]
-        loss_train_total += loss.item()
-        loss.backward()
+    dataloader_train = DataLoader(
+        dataset_train, sampler=RandomSampler(dataset_train), batch_size=batch_size
+    )
 
-        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+    dataloader_validation = DataLoader(
+        dataset_val, sampler=SequentialSampler(dataset_val), batch_size=batch_size
+    )
 
-        optimizer.step()
-        scheduler.step()
+    # %%
 
-        progress_bar.set_postfix(
-            {"training_loss": "{:.3f}".format(loss.item() / len(batch))}
+    from transformers import AdamW, get_linear_schedule_with_warmup
+
+    optimizer = AdamW(model.parameters(), lr=1e-5, eps=1e-8)
+
+    # %%
+
+    epochs = 10
+
+    scheduler = get_linear_schedule_with_warmup(
+        optimizer, num_warmup_steps=0, num_training_steps=len(dataloader_train) * epochs
+    )
+
+    import random
+    import numpy as np
+
+    torch.cuda.empty_cache()
+    seed_val = 17
+    random.seed(seed_val)
+    np.random.seed(seed_val)
+    torch.manual_seed(seed_val)
+    torch.cuda.manual_seed_all(seed_val)
+
+    # %%
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model.to(device)
+
+    print(device)
+
+    # %%
+
+    # %%
+
+    for epoch in tqdm(range(1, epochs + 1)):
+
+        model.train()
+
+        loss_train_total = 0
+
+        progress_bar = tqdm(
+            dataloader_train,
+            desc="Epoch {:1d}".format(epoch),
+            leave=False,
+            disable=False,
         )
+        for batch in progress_bar:
+            model.zero_grad()
 
-    torch.save(model.state_dict(), f"finetuned_BERT_epoch_{epoch}.model")
+            batch = tuple(b.to(device) for b in batch)
 
-    tqdm.write(f"\nEpoch {epoch}")
+            inputs = {
+                "input_ids": batch[0],
+                "attention_mask": batch[1],
+                "labels": batch[2],
+            }
 
-    loss_train_avg = loss_train_total / len(dataloader_train)
-    tqdm.write(f"Training loss: {loss_train_avg}")
+            outputs = model(**inputs)
 
-    val_loss, predictions, true_vals = evaluate(
-        dataloader_validation, model=model, device=device
-    )
-    val_f1 = f1_score_func(predictions, true_vals)
-    val_p = precision_score_func(predictions, true_vals)
-    val_r = recall_score_func(predictions, true_vals)
-    tqdm.write(f"Validation loss: {val_loss}")
-    tqdm.write(f"Precision score (macro): {val_p}")
-    tqdm.write(f"Recall Score (macro): {val_r}")
-    tqdm.write(f"F1 Score (macro): {val_f1}")
+            loss = outputs[0]
+            loss_train_total += loss.item()
+            loss.backward()
 
-# %%
+            torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+
+            optimizer.step()
+            scheduler.step()
+
+            progress_bar.set_postfix(
+                {"training_loss": "{:.3f}".format(loss.item() / len(batch))}
+            )
+
+        torch.save(model.state_dict(), f"finetuned_BERT_epoch_{epoch}.model")
+
+        tqdm.write(f"\nEpoch {epoch}")
+
+        loss_train_avg = loss_train_total / len(dataloader_train)
+        tqdm.write(f"Training loss: {loss_train_avg}")
+
+        val_loss, predictions, true_vals = evaluate(
+            dataloader_validation, model=model, device=device
+        )
+        val_f1 = f1_score_func(predictions, true_vals)
+        val_p = precision_score_func(predictions, true_vals)
+        val_r = recall_score_func(predictions, true_vals)
+        tqdm.write(f"Validation loss: {val_loss}")
+        tqdm.write(f"Precision score (macro): {val_p}")
+        tqdm.write(f"Recall Score (macro): {val_r}")
+        tqdm.write(f"F1 Score (macro): {val_f1}")
