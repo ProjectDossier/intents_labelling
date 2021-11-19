@@ -21,10 +21,17 @@ Use pip to install requirements:
 (intents_labelling) $ pip install -r requirements.txt
 ```
 
+
+Install `intents_labelling` package for development
+
+```bash
+(intents_labelling) $ pip install -e .
+```
+
 Install `spacy` language model:
 
 ```bash
-(intents_labelling) $ python -m spacy download en_core_web_sm
+(intents_labelling) $ python -m spacy download en_core_web_lg
 ```
 
 
