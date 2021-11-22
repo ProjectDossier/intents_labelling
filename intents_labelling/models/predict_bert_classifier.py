@@ -75,7 +75,7 @@ for modelname in range(1, 9):
         df[data_column].values,
         add_special_tokens=True,
         return_attention_mask=True,
-        pad_to_max_length=True,
+        padding=True,
         max_length=256,
         return_tensors="pt",
     )
