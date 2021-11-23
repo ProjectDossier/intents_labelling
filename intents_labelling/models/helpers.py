@@ -1,8 +1,23 @@
+from typing import Dict, List
+
 import numpy as np
 import torch
 from sklearn.metrics import f1_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
+
+
+def get_label_dict(labels: List[str]) -> Dict[str, int]:
+    """Create a dict with a lookup table for label and its integer encoding."""
+    label_dict = {}
+    for index, possible_label in enumerate(labels):
+        label_dict[possible_label] = index
+    return label_dict
+
+
+def read_labels(infile):
+    with open(infile, "r") as fp:
+        return json.load(fp)
 
 
 def f1_score_func(preds, labels):

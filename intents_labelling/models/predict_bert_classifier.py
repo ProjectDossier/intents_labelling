@@ -1,7 +1,4 @@
 import argparse
-import logging
-import json
-import os
 
 import numpy as np
 import torch
@@ -15,12 +12,10 @@ from intents_labelling.models.helpers import (
     accuracy_per_class,
     precision_score_func,
     recall_score_func,
+    read_labels,
 )
 
-
-def read_labels(infile):
-    with open(infile, "r") as fp:
-        return json.load(fp)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 if __name__ == "__main__":
@@ -37,16 +32,17 @@ if __name__ == "__main__":
     label_column = "Label"
     data_column = "query"
 
+    label_dict = read_labels(
+        infile=f"{args.model_path}/{args.model_name}/{labels_file}"
+    )
+
 
 def predict():
     pass
 
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
 tokenizer = BertTokenizer.from_pretrained("bert-base-uncased", do_lower_case=True)
 
-label_dict = read_labels(infile=f"{args.model_path}/{args.model_name}/{labels_file}")
 df["label"] = df[label_column].replace(label_dict)
 
 model = BertForSequenceClassification.from_pretrained(
@@ -75,7 +71,7 @@ for modelname in range(1, 9):
         df[data_column].values,
         add_special_tokens=True,
         return_attention_mask=True,
-        padding=True,
+        padding="max_length",
         max_length=256,
         return_tensors="pt",
     )
