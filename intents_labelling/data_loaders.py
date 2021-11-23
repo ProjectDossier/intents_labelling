@@ -7,6 +7,7 @@ def load_unlabelled_orcas(data_path: str = "data/input/orcas.tsv") -> pd.DataFra
     names = ["qid", "query", "did", "url"]
     df = pd.read_csv(data_path, sep="\t", names=names, quoting=csv.QUOTE_NONE)
     df["query"] = df["query"].astype(str)
+    df["url"] = df["url"].astype(str)
 
     return df
 
@@ -16,6 +17,7 @@ def load_labelled_orcas(
 ) -> pd.DataFrame:
     df = pd.read_csv(data_path, sep="\t")
     df["query"] = df["query"].astype(str)
+    df["url"] = df["url"].astype(str)
 
     return df
 
