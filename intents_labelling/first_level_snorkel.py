@@ -175,7 +175,7 @@ def lf_www_lookup(x):
         )
 
 
-with open("data/helpers/top_level_domains.txt") as fp:
+with open("/Users/dariaalexander/Documents/intents_labelling/data/helpers/top_level_domains.txt") as fp:
     domain_names_list = [line.strip() for line in fp.readlines()]
 
 
@@ -258,7 +258,7 @@ def lf_match_url2(x):
     else:
         r1 = re.search(r"https:\/\/www\.(.*?)\/", x.url)
         r2 = re.search(r"http:\/\/www\.(.*?)\/", x.url)
-        r3 = re.search(r"http:(.*?)\/", x.url)
+        r3 = re.search(r"http:\/\/(.*?)\/", x.url)
         r4 = re.search(r"https:\/\/(.*?)\/", x.url)
         st = ""
         if r1:
