@@ -228,7 +228,8 @@ def lf_match_url(x):
         li = list(x.query.lower().split(" "))
         r1 = re.search(r"https:\/\/www\.(.*?)\/", x.url)
         r2 = re.search(r"http:\/\/www\.(.*?)\/", x.url)
-        r3 = re.search(r"http:(.*?)\/", x.url)
+        r3 = re.search(r"http:\/\/(.*?)\/", x.url)
+        r4 = re.search(r"https:\/\/(.*?)\/", x.url)
         st = ""
         if r1:
             st = r1.group(1)
@@ -236,6 +237,9 @@ def lf_match_url(x):
             st = r2.group(1)
         elif r3:
             st = r3.group(1)
+            print(st)
+        elif r4:
+            st = r4.group(1)
         return (
             FirstLevelIntents.NAVIGATIONAL
             if any(word in st.lower() for word in li)
@@ -255,6 +259,7 @@ def lf_match_url2(x):
         r1 = re.search(r"https:\/\/www\.(.*?)\/", x.url)
         r2 = re.search(r"http:\/\/www\.(.*?)\/", x.url)
         r3 = re.search(r"http:(.*?)\/", x.url)
+        r4 = re.search(r"https:\/\/(.*?)\/", x.url)
         st = ""
         if r1:
             st = r1.group(1)
@@ -262,6 +267,8 @@ def lf_match_url2(x):
             st = r2.group(1)
         elif r3:
             st = r3.group(1)
+        elif r4:
+            st = r4.group(1)
         for ent in x.doc.ents:
             if ent.label_ in ne_labels:
                 l = ent.text.lower().split(" ")
