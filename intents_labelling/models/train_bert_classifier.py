@@ -22,6 +22,11 @@ from intents_labelling.models.helpers import (
     evaluate,
 )
 
+seed = 42
+torch.manual_seed(seed)
+random.seed(seed)
+np.random.seed(0)
+
 
 def get_label_dict(labels: List[str]) -> Dict[str, int]:
     label_dict = {}
