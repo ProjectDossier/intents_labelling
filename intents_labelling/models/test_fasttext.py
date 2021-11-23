@@ -40,7 +40,7 @@ def prediction_labels(model,df,col_name):
     return t
 
 if __name__ == "__main__":
-    t = load_test("/Users/dariaalexander/Documents/DoSSIER/data/test_pred_lab.tsv")
+    t = load_test("data/input/test_pred_lab.tsv")
     print(t)
     pt = prepare_test(t,"label_man")
     st = save_test("intents_labelling/train_test_files/test_man.txt",pt,"label_man")
