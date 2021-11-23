@@ -39,14 +39,10 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    # args.out_path = "models/bert/"
-    # args.model_name = "bert_query"
     labels_file = "labels.json"
 
     if not os.path.exists(f"{args.out_path}/{args.model_name}"):
         os.makedirs(f"{args.out_path}/{args.model_name}")
-
-    # args.infile = "data/output/orcas_10000.tsv"
 
     label_column = "Label"
     data_column = "query"
@@ -60,18 +56,6 @@ if __name__ == "__main__":
 
     df["label"] = df[label_column].replace(label_dict)
 
-    X_train, X_val, y_train, y_val = train_test_split(
-        df.index.values,
-        df["label"].values,
-        test_size=0.2,
-        random_state=42,
-        stratify=df.label.values,
-    )
-
-    df["data_type"] = ["not_set"] * df.shape[0]
-
-    df.loc[X_train, "data_type"] = "train"
-    df.loc[X_val, "data_type"] = "val"
     print(df["data_type"].value_counts())
 
     tokenizer = BertTokenizer.from_pretrained("bert-base-uncased", do_lower_case=True)
@@ -88,7 +72,7 @@ if __name__ == "__main__":
     )
 
     encoded_data_val = tokenizer.batch_encode_plus(
-        df[df.data_type == "val"][data_column].values,
+        df[df.data_type == "validation"][data_column].values,
         add_special_tokens=True,
         return_attention_mask=True,
         padding=True,
@@ -104,7 +88,7 @@ if __name__ == "__main__":
 
     input_ids_val = encoded_data_val["input_ids"]
     attention_masks_val = encoded_data_val["attention_mask"]
-    labels_val = torch.tensor(df[df.data_type == "val"].label.values)
+    labels_val = torch.tensor(df[df.data_type == "validation"].label.values)
 
     # %%
 
