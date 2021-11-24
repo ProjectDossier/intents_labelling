@@ -57,7 +57,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name", default="bert_query", type=str)
-    parser.add_argument("--infile", default="data/output/orcas_952.tsv", type=str)
+    parser.add_argument("--infile", default="data/output/orcas_10000.tsv", type=str)
     parser.add_argument("--out_path", default="models/bert/", type=str)
 
     args = parser.parse_args()
