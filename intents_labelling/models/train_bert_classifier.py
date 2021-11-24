@@ -4,6 +4,7 @@ import os.path
 import random
 
 import numpy as np
+import pandas as pd
 import torch
 from torch.utils.data import DataLoader, RandomSampler
 from torch.utils.data import TensorDataset
@@ -30,9 +31,9 @@ np.random.seed(seed_val)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-def prepare_data(df, data_type):
+def prepare_data(df: pd.DataFrame, data_type: str, data_column: str, label_column: str):
     encoded_data = tokenizer.batch_encode_plus(
-        df[df.data_type == data_type][data_column].values,
+        df[df["data_type"] == data_type][data_column].values,
         add_special_tokens=True,
         return_attention_mask=True,
         padding="max_length",
@@ -42,7 +43,7 @@ def prepare_data(df, data_type):
 
     input_ids = encoded_data["input_ids"]
     attention_masks = encoded_data["attention_mask"]
-    labels = torch.tensor(df[df.data_type == data_type].label.values)
+    labels = torch.tensor(df.loc[df.data_type == data_type, label_column].values)
 
     dataset = TensorDataset(input_ids, attention_masks, labels)
 
@@ -96,8 +97,15 @@ if __name__ == "__main__":
     optimizer = AdamW(model.parameters(), lr=1e-5, eps=1e-8)
     epochs = 10
 
-    dataloader_train = prepare_data(df=df, data_type="train")
-    dataloader_validation = prepare_data(df=df, data_type="validation")
+    dataloader_train = prepare_data(
+        df=df, data_type="train", data_column=data_column, label_column=label_column
+    )
+    dataloader_validation = prepare_data(
+        df=df,
+        data_type="validation",
+        data_column=data_column,
+        label_column=label_column,
+    )
 
     scheduler = get_linear_schedule_with_warmup(
         optimizer, num_warmup_steps=0, num_training_steps=len(dataloader_train) * epochs
@@ -105,8 +113,7 @@ if __name__ == "__main__":
 
     torch.cuda.empty_cache()
     model.to(device)
-
-    print(device)
+    print(f"{device=}")
 
     for epoch in tqdm(range(1, epochs + 1)):
 
