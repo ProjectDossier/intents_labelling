@@ -120,14 +120,7 @@ def lf_download_lookup(x):
 
 @labeling_function(pre=[spacy])
 def lf_audio_video_lookup(x):
-    keywords = [
-        "audio",
-        "video",
-        "videos",
-        "image",
-        "images",
-        "calculator"
-    ]
+    keywords = ["audio", "video", "videos", "image", "images", "calculator"]
     if x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
     else:
@@ -157,8 +150,7 @@ def lf_transaction_lookup(x):
         "converter",
         "convertor",
         "converters",
-        "convertors"
-        "viewer",
+        "convertors" "viewer",
         "crop",
     ]
     if x.doc[0].text.lower() in informational_start_words:
@@ -233,11 +225,15 @@ def lf_login_lookup(x):
 
 @labeling_function(pre=[spacy])
 def lf_match_url(x):
-    if any(re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
-           for word in transactional_keywords):
+    if any(
+        re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+        for word in transactional_keywords
+    ):
         return FirstLevelIntents.TRANSACTIONAL
-    elif any(re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
-             for word in factual_keywords):
+    elif any(
+        re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+        for word in factual_keywords
+    ):
         return FirstLevelIntents.ABSTAIN
     elif x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
@@ -266,11 +262,15 @@ def lf_match_url(x):
 
 @labeling_function(pre=[spacy])
 def lf_match_url2(x):
-    if any(re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
-            for word in transactional_keywords):
+    if any(
+        re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+        for word in transactional_keywords
+    ):
         return FirstLevelIntents.TRANSACTIONAL
-    if any(re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
-           for word in factual_keywords):
+    if any(
+        re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+        for word in factual_keywords
+    ):
         return FirstLevelIntents.ABSTAIN
     elif x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
