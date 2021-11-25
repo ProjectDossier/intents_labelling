@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.model_selection import train_test_split
 from snorkel.labeling import PandasLFApplier, LFAnalysis
 from snorkel.labeling.model import LabelModel
 
@@ -13,6 +14,8 @@ class SnorkelLabelling:
 
         self.first_level_column = "Level_1"
         self.second_level_column = "Level_2"
+
+        self.final_label_column = "Label"
 
     def predict_first_level(self, df: pd.DataFrame) -> pd.DataFrame:
         applier = PandasLFApplier(lfs=self.lfs)
@@ -76,10 +79,21 @@ class SnorkelLabelling:
 
     def create_final_label(self, df: pd.DataFrame) -> pd.DataFrame:
         """Creates a column with final label concatenating first and second level."""
-        label_column = "Label"
 
-        df[label_column] = df[self.first_level_column]
-        df.loc[df[label_column] == "Abstain", label_column] = df.loc[
-            df[label_column] == "Abstain", self.second_level_column
-        ]
+        df[self.final_label_column] = df[self.first_level_column]
+        df.loc[
+            df[self.final_label_column] == "Abstain", self.final_label_column
+        ] = df.loc[df[self.final_label_column] == "Abstain", self.second_level_column]
+        return df
+
+    def create_train_validation_split(self, df: pd.DataFrame, train_size: float = 0.8):
+        _, validation_indices = train_test_split(
+            df.index.values,
+            train_size=train_size,
+            random_state=42,
+            stratify=df[self.final_label_column].values,
+        )
+
+        df["data_type"] = "train"
+        df.loc[validation_indices, "data_type"] = "validation"
         return df
