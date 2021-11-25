@@ -14,6 +14,24 @@ class SecondLevelIntents(IntEnum):
     FACTUAL = 0
     ABSTAIN = -1
 
+transactional_verbs = [
+    "download",
+    "downloading"
+    "obtain",
+    "obtaining"
+    "access",
+    "accessing"
+    "watch",
+    "watching",
+    "install",
+    "installing",
+    "play",
+    "playing",
+    "listen",
+    "listening",
+    "buy",
+    "buying",
+]
 
 ne_labels = [
     "ORG",
@@ -33,18 +51,7 @@ with open("data/helpers/verbs.txt") as fp:
 
 @labeling_function(pre=[spacy])
 def lf_is_verb(x):
-    transactional_keywords = [
-        "download",
-        "obtain",
-        "access",
-        "earn",
-        "redeem",
-        "watch",
-        "install",
-        "play",
-        "listen",
-    ]
-    if x.doc[0].text in transactional_keywords:
+    if x.doc[0].text in transactional_verbs:
         return SecondLevelIntents.ABSTAIN
     elif (
         x.doc[0].pos_ == "VERB"
@@ -58,18 +65,7 @@ def lf_is_verb(x):
 
 @labeling_function(pre=[spacy])
 def lf_is_ing_verb(x):
-    transactional_keywords = [
-        "download",
-        "obtain",
-        "access",
-        "earn",
-        "redeem",
-        "watch",
-        "install",
-        "play",
-        "listen",
-    ]
-    if x.doc[0].text in transactional_keywords:
+    if x.doc[0].text in transactional_verbs:
         return SecondLevelIntents.ABSTAIN
     elif x.doc[0].pos_ == "VERB" and "ing" in x.doc[0].text:
         return SecondLevelIntents.INSTRUMENTAL
@@ -82,7 +78,10 @@ def lf_howto(x):
     keywords = ["how to", "how do", "how can", "how does"]
     return (
         SecondLevelIntents.INSTRUMENTAL
-        if any(word in x.query.lower() for word in keywords)
+        if any(
+            re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+            for word in keywords
+        )
         else SecondLevelIntents.ABSTAIN
     )
 
@@ -139,37 +138,77 @@ def lf_facts_lookup(x):
     ]
     return (
         SecondLevelIntents.FACTUAL
-        if any(word in x.query.lower() for word in keywords)
+        if any(
+            re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+            for word in keywords
+        )
         else SecondLevelIntents.ABSTAIN
     )
 
 
 @labeling_function()
 def lf_finance_lookup(x):
-    keywords = ["average", "sum", "cost", "amount", "salary", "salaries", "pay"]
+    keywords = [
+        "average",
+        "sum",
+        "cost",
+        "costs",
+        "amount",
+        "amounts",
+        "salary",
+        "salaries",
+        "pay"
+    ]
     return (
         SecondLevelIntents.FACTUAL
-        if any(word in x.query.lower() for word in keywords)
+        if any(
+            re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+            for word in keywords
+        )
         else SecondLevelIntents.ABSTAIN
     )
 
 
 @labeling_function()
 def lf_phone(x):
-    keywords = ["number", "phone", "code", "zip"]
+    keywords = [
+        "number",
+        "numbers",
+        "phone",
+        "phones",
+        "code",
+        "codes",
+        "zip",
+    ]
     return (
         SecondLevelIntents.FACTUAL
-        if any(word in x.query.lower() for word in keywords)
+        if any(
+            re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+            for word in keywords
+        )
         else SecondLevelIntents.ABSTAIN
     )
 
 
 @labeling_function()
 def lf_definition(x):
-    keywords = ["define", "definition", "meaning", "example", "side effect"]
+    keywords = [
+        "define",
+        "definition",
+        "definitions",
+        "meaning",
+        "meanings",
+        "example",
+        "examples",
+        "side effect",
+        "side effects",
+    ]
     return (
         SecondLevelIntents.FACTUAL
-        if any(word in x.query.lower() for word in keywords)
+        if any(
+            re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+            for word in keywords
+        )
         else SecondLevelIntents.ABSTAIN
     )
 

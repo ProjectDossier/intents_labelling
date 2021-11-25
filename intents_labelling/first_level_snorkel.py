@@ -43,6 +43,7 @@ factual_keywords = [
     "quantity",
     "quantities",
     "recipe",
+    "recipes",
     "side effects",
     "weather",
     "average",
@@ -61,6 +62,8 @@ transactional_keywords = [
     "redeem",
     "watch",
     "install",
+    "app",
+    "application",
     "play",
     "listen",
     "online",
@@ -89,7 +92,7 @@ ne_labels = [
 
 @labeling_function(pre=[spacy])
 def lf_download_lookup(x):
-    transactional_keywords = [
+    transact_keywords = [
         "download",
         "obtain",
         "access",
@@ -98,6 +101,7 @@ def lf_download_lookup(x):
         "watch",
         "install",
         "play",
+        "app",
         "listen",
         "loader",
     ]
@@ -108,7 +112,7 @@ def lf_download_lookup(x):
             FirstLevelIntents.TRANSACTIONAL
             if any(
                 re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
-                for word in transactional_keywords
+                for word in transact_keywords
             )
             else FirstLevelIntents.ABSTAIN
         )
@@ -116,13 +120,23 @@ def lf_download_lookup(x):
 
 @labeling_function(pre=[spacy])
 def lf_audio_video_lookup(x):
+    keywords = [
+        "audio",
+        "video",
+        "videos",
+        "image",
+        "images",
+        "calculator"
+    ]
     if x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
     else:
-        keywords = ["audio", "video", "image", "images", "calculator"]
         return (
             FirstLevelIntents.TRANSACTIONAL
-            if any(word in x.query.lower() for word in keywords)
+            if any(
+                re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+                for word in keywords
+            )
             else FirstLevelIntents.ABSTAIN
         )
 
@@ -132,7 +146,6 @@ def lf_transaction_lookup(x):
     keywords = [
         "online",
         "free",
-        "transaction",
         "buy",
         "chat",
         "purchase",
@@ -143,6 +156,8 @@ def lf_transaction_lookup(x):
         "payment",
         "converter",
         "convertor",
+        "converters",
+        "convertors"
         "viewer",
         "crop",
     ]
@@ -218,9 +233,11 @@ def lf_login_lookup(x):
 
 @labeling_function(pre=[spacy])
 def lf_match_url(x):
-    if any(word in x.query.lower() for word in transactional_keywords):
+    if any(re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+           for word in transactional_keywords):
         return FirstLevelIntents.TRANSACTIONAL
-    elif any(word in x.query.lower() for word in factual_keywords):
+    elif any(re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+             for word in factual_keywords):
         return FirstLevelIntents.ABSTAIN
     elif x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
@@ -249,16 +266,18 @@ def lf_match_url(x):
 
 @labeling_function(pre=[spacy])
 def lf_match_url2(x):
-    if any(word in x.query.lower() for word in transactional_keywords):
+    if any(re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+            for word in transactional_keywords):
         return FirstLevelIntents.TRANSACTIONAL
-    elif any(word in x.query.lower() for word in factual_keywords):
+    if any(re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+           for word in factual_keywords):
         return FirstLevelIntents.ABSTAIN
     elif x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
     else:
         r1 = re.search(r"https:\/\/www\.(.*?)\/", x.url)
         r2 = re.search(r"http:\/\/www\.(.*?)\/", x.url)
-        r3 = re.search(r"http:(.*?)\/", x.url)
+        r3 = re.search(r"http:\/\/(.*?)\/", x.url)
         r4 = re.search(r"https:\/\/(.*?)\/", x.url)
         st = ""
         if r1:
