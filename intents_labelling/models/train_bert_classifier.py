@@ -43,7 +43,9 @@ def prepare_data(df: pd.DataFrame, data_type: str, data_column: str, label_colum
 
     input_ids = encoded_data["input_ids"]
     attention_masks = encoded_data["attention_mask"]
-    labels = torch.tensor(df.loc[df.data_type == data_type, label_column].values)
+    print(df.loc[df["data_type"] == data_type, label_column])
+    x = df.loc[df["data_type"] == data_type, label_column]
+    labels = torch.tensor(df.loc[df["data_type"] == data_type, label_column].values)
 
     dataset = TensorDataset(input_ids, attention_masks, labels)
 
@@ -58,7 +60,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name", default="bert_query", type=str)
-    parser.add_argument("--infile", default="data/output/orcas_10000.tsv", type=str)
+    parser.add_argument("--infile", default="data/output/orcas_1000000.tsv", type=str)
     parser.add_argument("--out_path", default="models/bert/", type=str)
 
     args = parser.parse_args()
@@ -98,13 +100,13 @@ if __name__ == "__main__":
     epochs = 10
 
     dataloader_train = prepare_data(
-        df=df, data_type="train", data_column=data_column, label_column=label_column
+        df=df, data_type="train", data_column=data_column, label_column="label"
     )
     dataloader_validation = prepare_data(
         df=df,
         data_type="validation",
         data_column=data_column,
-        label_column=label_column,
+        label_column="label",
     )
 
     scheduler = get_linear_schedule_with_warmup(
