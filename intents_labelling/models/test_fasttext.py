@@ -22,7 +22,7 @@ def load_mod(data_path: str):
 
 def save_test(data_path,df,data,label):
     df[[data, label]].to_csv(data_path,index=False,sep=' ',header=None,quoting=csv.QUOTE_NONE,quotechar="",escapechar=" ")
-
+    
 
 def prepare_test(df, data, label):
     df = df[[data, label]]

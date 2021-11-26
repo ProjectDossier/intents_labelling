@@ -14,14 +14,12 @@ class SecondLevelIntents(IntEnum):
     FACTUAL = 0
     ABSTAIN = -1
 
+
 transactional_verbs = [
     "download",
-    "downloading"
-    "obtain",
-    "obtaining"
-    "access",
-    "accessing"
-    "watch",
+    "downloading" "obtain",
+    "obtaining" "access",
+    "accessing" "watch",
     "watching",
     "install",
     "installing",
@@ -157,7 +155,7 @@ def lf_finance_lookup(x):
         "amounts",
         "salary",
         "salaries",
-        "pay"
+        "pay",
     ]
     return (
         SecondLevelIntents.FACTUAL

@@ -6,6 +6,7 @@ import re
 
 
 def query_plus_url(df, data, url):
+
     """
     preprocesses the query into query and url
     """
@@ -17,7 +18,11 @@ def url_strip(df):
     """
     removes http and www from the url
     """
-    df['url_strip'] = df['url'].apply(lambda x: re.sub(r'(https:\/\/www\.)|(http:\/\/www\.)|(http:\/\/)|(https:\/\/)', '', str(x)))
+    df["url_strip"] = df["url"].apply(
+        lambda x: re.sub(
+            r"(https:\/\/www\.)|(http:\/\/www\.)|(http:\/\/)|(https:\/\/)", "", str(x)
+        )
+    )
     return df
 
 
