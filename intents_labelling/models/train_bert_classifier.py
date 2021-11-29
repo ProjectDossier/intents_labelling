@@ -43,8 +43,6 @@ def prepare_data(df: pd.DataFrame, data_type: str, data_column: str, label_colum
 
     input_ids = encoded_data["input_ids"]
     attention_masks = encoded_data["attention_mask"]
-    print(df.loc[df["data_type"] == data_type, label_column])
-    x = df.loc[df["data_type"] == data_type, label_column]
     labels = torch.tensor(df.loc[df["data_type"] == data_type, label_column].values)
 
     dataset = TensorDataset(input_ids, attention_masks, labels)
@@ -71,9 +69,11 @@ if __name__ == "__main__":
         os.makedirs(f"{args.out_path}/{args.model_name}")
 
     label_column = "Label"
-    data_column = "query"
+    data_column = "query_url"
 
     df = load_labelled_orcas(data_path=args.infile)
+
+    df[data_column] = "Query: " + df["query"] + " URL: " + df["url"]
 
     label_dict = get_label_dict(df[label_column].unique().tolist())
 

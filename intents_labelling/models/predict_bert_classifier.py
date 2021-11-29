@@ -47,7 +47,7 @@ if __name__ == "__main__":
     labels_file = "labels.json"
 
     df = load_labelled_orcas(data_path=args.infile)
-    label_column = "Label"
+    label_column = "label_manual"
     data_column = "query"
 
     label_dict = read_labels(
