@@ -1,4 +1,5 @@
 import re
+import nltk
 from enum import IntEnum
 
 from snorkel.labeling import labeling_function
@@ -43,6 +44,22 @@ ne_labels = [
     "PRODUCT",
     "WORK_OF_ART",
 ]
+
+factual_keywords = [
+    "phone",
+    "code",
+    "number",
+    "zip",
+    "facts",
+    "statistics",
+    "quantity",
+    "quantities",
+    "average",
+    "sum",
+    "cost",
+    "amount",
+    "pay",
+]
 """INSTRUMENTAL Labelling functions"""
 
 with open("data/helpers/verbs.txt") as fp:
@@ -51,13 +68,9 @@ with open("data/helpers/verbs.txt") as fp:
 
 @labeling_function(pre=[spacy])
 def lf_is_verb(x):
-    if x.doc[0].text in transactional_verbs:
-        return SecondLevelIntents.ABSTAIN
-    elif (
-        x.doc[0].pos_ == "VERB"
-        and x.doc[0].text == x.doc[0].lemma_
-        and x.doc[0].text in verb_list
-    ):
+    if any(re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I) for word in factual_keywords):
+        return SecondLevelIntents.FACTUAL
+    elif x.doc[0].text in verb_list:
         return SecondLevelIntents.INSTRUMENTAL
     else:
         return SecondLevelIntents.ABSTAIN
@@ -68,6 +81,7 @@ def lf_is_ing_verb(x):
     if x.doc[0].text in transactional_verbs:
         return SecondLevelIntents.ABSTAIN
     elif x.doc[0].pos_ == "VERB" and "ing" in x.doc[0].text:
+        #print("ING",x.doc[0])
         return SecondLevelIntents.INSTRUMENTAL
     else:
         return SecondLevelIntents.ABSTAIN
@@ -76,14 +90,11 @@ def lf_is_ing_verb(x):
 @labeling_function()
 def lf_howto(x):
     keywords = ["how to", "how do", "how can", "how does"]
-    return (
-        SecondLevelIntents.INSTRUMENTAL
-        if any(
-            re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
-            for word in keywords
-        )
-        else SecondLevelIntents.ABSTAIN
-    )
+    if any(re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I) for word in keywords):
+        #print("query",x.query)
+        return SecondLevelIntents.INSTRUMENTAL
+    else:
+        return SecondLevelIntents.ABSTAIN
 
 
 @labeling_function()
@@ -94,11 +105,10 @@ def lf_wikihow_lookup(x):
         "support.office.com",
         "support.google.com",
     ]
-    return (
-        SecondLevelIntents.INSTRUMENTAL
-        if any(url in x.url.lower() for url in urls)
-        else SecondLevelIntents.ABSTAIN
-    )
+    if any(url in x.url.lower() for url in urls):
+        return SecondLevelIntents.INSTRUMENTAL
+    else:
+        return SecondLevelIntents.ABSTAIN
 
 
 """FACTUAL Labelling functions"""
@@ -145,7 +155,6 @@ def lf_facts_lookup(x):
         else SecondLevelIntents.ABSTAIN
     )
 
-
 @labeling_function()
 def lf_finance_lookup(x):
     keywords = [
@@ -157,7 +166,7 @@ def lf_finance_lookup(x):
         "amounts",
         "salary",
         "salaries",
-        "pay"
+        "pay",
     ]
     return (
         SecondLevelIntents.FACTUAL
@@ -167,7 +176,6 @@ def lf_finance_lookup(x):
         )
         else SecondLevelIntents.ABSTAIN
     )
-
 
 @labeling_function()
 def lf_phone(x):
@@ -238,6 +246,11 @@ def lf_url_lookup(x):
         "allrecipes.com",
         "thesaurus.com",
         "thefreedictionary.com",
+        "thoughtco.com",
+        "healthline.com",
+        "mayoclinic.org",
+        "medicinenet.com",
+        "webmd.com",
     ]
     return (
         SecondLevelIntents.FACTUAL
@@ -246,34 +259,27 @@ def lf_url_lookup(x):
     )
 
 
+
 @labeling_function(pre=[spacy])
-def lf_has_ner(x):
-    sites_f = [
-        "thoughtco.com",
-        "wikipedia.org",
-        "healthline.com",
-        "mayoclinic.org",
-        "medicinenet.com",
-        "webmd.com",
-    ]
-    for ent in x.doc.ents:
-        if ent.label_ in ne_labels and any(url in x.url.lower() for url in sites_f):
+def lf_wiki(x):
+    if "wikipedia.org" in x.url.lower():
             return SecondLevelIntents.FACTUAL
-    return SecondLevelIntents.ABSTAIN
+    else:
+        return SecondLevelIntents.ABSTAIN
 
 
 second_level_functions = [
     lf_is_verb,
     lf_howto,
     lf_is_ing_verb,
-    lf_wikihow_lookup,
+    #lf_wikihow_lookup,
     lf_keyword_lookup,
     lf_question_words,
     lf_facts_lookup,
-    lf_finance_lookup,
+    #lf_finance_lookup,
     lf_phone,
     lf_definition,
     lf_digit,
     lf_url_lookup,
-    lf_has_ner,
+    lf_wiki
 ]

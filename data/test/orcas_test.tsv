@@ -1,4 +1,4 @@
-qid	query	did	url	Label
+qid	query	did	url	label_manual
 7916625	best reads	D889100	http://thegreatestbooks.org/	Abstain
 7737755	tamerind	D586723	https://en.wikipedia.org/wiki/Tamarind	Factual
 4598644	show mi ip	D3188590	http://showip.net/	Instrumental
@@ -19,27 +19,27 @@ qid	query	did	url	Label
 10129502	arctanhx	D1759797	https://www.rapidtables.com/math/trigonometry/arctan.html	Factual
 6451358	10+4	D3309537	https://en.wikipedia.org/wiki/Ten-code	Factual
 7328542	c# save settings	D1053884	https://msdn.microsoft.com/en-us/library/aa730869(v=vs.80).aspx	Factual
-4630979	cdczika	D2587781	https://www.cdc.gov/zika/about/index.html	Abstain
+4630979	cdczika	D2587781	https://www.cdc.gov/zika/about/index.html	Navigational
 12450957	what is lead time	D3504641	http://www.dictionary.com/browse/lead-time	Factual
 3264093	direct debits	D2714082	http://www.directdebit.co.uk/	Navigational
 10052278	muscolare	D19397	https://en.wikipedia.org/wiki/Muscle	Factual
-2006319	place in spain	D1570994	https://www.britannica.com/place/Spain	Abstain
-2615995	celebrities dead or alive website	D2023735	http://www.deadoraliveinfo.com/	Abstain
+2006319	place in spain	D1570994	https://www.britannica.com/place/Spain	Factual
+2615995	celebrities dead or alive website	D2023735	http://www.deadoraliveinfo.com/	Navigational
 7543866	apple phone replacement	D2325619	https://support.apple.com/iphone/repair/service	Factual
 10095520	weather vancouver march	D147671	https://www.theweathernetwork.com/ca/weather/british-columbia/vancouver	Factual
 6855215	almond butter	D2846792	http://www.fitday.com/fitness-articles/nutrition/healthy-eating/almond-butter-vs-peanut-butter.html	Abstain
 8305401	www,craiglist	D2914264	https://bellingham.craigslist.org/	Navigational
-9339510	force and motion video	D584419	http://idahoptv.org/sciencetrek/topics/force_and_motion/facts.cfm	Transactional
+9339510	force and motion video	D584419	http://idahoptv.org/sciencetrek/topics/force_and_motion/facts.cfm	Abstain
 7047455	what is physical development in childcare	D1800775	https://study.com/academy/lesson/what-is-child-development-definition-theories-stages.html	Factual
 2280859	best crossbow for deer hunting	D1597083	http://www.crossbowcritic.com/best-compound-bow-reviews-beginner-hunting-bows/	Abstain
-12638281	can i order prescription eyeglasses online	D555381	https://www.lenscrafters.com/lc-us/eyeglasses	Factual
+12638281	can i order prescription eyeglasses online	D555381	https://www.lenscrafters.com/lc-us/eyeglasses	Transactional
 10540693	slo county jail	D3162531	http://www.slocounty.ca.gov/	Navigational
 9346235	post traumatic epilepsy	D630146	https://en.wikipedia.org/wiki/Post-traumatic_epilepsy	Factual
 11892774	famous black explorers	D2562014	http://totallyhistory.com/biography/famous-explorers/	Abstain
 6078668	health benefits of beet juice	D403997	http://www.stylecraze.com/articles/best-benefits-of-beetroot-juice-for-skin-hair-and-health/	Abstain
 9994918	ss-5	D3312420	https://www.e-forms.us/social-security-cards/	Abstain
 8095130	paycvor	D1745579	https://www.paycor.com/	Navigational
-11073431	zeus family tree	D422975	https://en.wikipedia.org/wiki/Zeus	Abstain
+11073431	zeus family tree	D422975	https://en.wikipedia.org/wiki/Zeus	Factual
 11012474	gc12 battery	D1812960	https://www.batteriesplus.com/Battery/Golf-Cart	Factual
 8216002	background sound effects free download	D906469	http://www.orangefreesounds.com/category/music/background-music/	Transactional
 9864816	mars retrograde motion	D935924	https://en.wikipedia.org/wiki/Apparent_retrograde_motion	Factual
@@ -56,7 +56,7 @@ qid	query	did	url	Label
 10998608	pioneer woman brisket recipe	D504646	http://thepioneerwoman.com/cooking/brisket_baby/	Factual
 10379507	flowers for algernon daniel keyes	D509437	https://www.cliffsnotes.com/literature/f/flowers-for-algernon/daniel-keyes-biography	Factual
 10401823	bank of eastern oregon	D986582	https://www.easternbank.com/	Navigational
-7573817	indeed job	D246145	https://www.indeed.com/hire	Abstain
+7573817	indeed job	D246145	https://www.indeed.com/hire	Navigational
 3288926	phising scam	D528954	https://en.wikipedia.org/wiki/Phishing	Factual
 2664812	clemson tigers news	D891730	http://www.espn.com/college-football/team/_/id/228/clemson-tigers	Abstain
 11403828	how indira gandhi died	D3325997	https://en.wikipedia.org/wiki/Assassination_of_Indira_Gandhi	Factual
@@ -74,21 +74,21 @@ qid	query	did	url	Label
 6959630	new jersey corvette dealer largest	D243018	https://kerbeck.com/	Abstain
 4768019	salt intake	D3173909	https://www.heartfoundation.org.au/healthy-eating/food-and-nutrition/salt	Abstain
 9276589	liver spots on back	D579925	http://www.mayoclinic.org/diseases-conditions/age-spots/symptoms-causes/syc-20355859	Abstain
-9783319	dfas help desk	D3428429	https://www.pay.gov/public/form/start/60658196	Transactional
+9783319	dfas help desk	D3428429	https://www.pay.gov/public/form/start/60658196	Abstain
 3385579	a340-200	D2032045	https://en.wikipedia.org/wiki/Airbus_A340	Factual
 4643078	anthem blue cross number	D540076	https://www13.anthem.com/cp/web/sisc/	Factual
 12570166	atorvastain	D87685	https://www.drugs.com/atorvastatin.html	Factual
 7643149	did romeo and juliet get married	D1513737	http://robertspage.com/romeo.html	Factual
 4488240	meaning of exception	D525298	https://www.thefreedictionary.com/exception	Factual
 3160487	car rental abroad	D1163821	https://www.gov.uk/driving-abroad	Abstain
-3105601	nadaguidelines	D8312	http://www.nadaguides.com/	Abstain
+3105601	nadaguidelines	D8312	http://www.nadaguides.com/	Navigational
 7563390	vizio tv remote app	D2548795	https://www.vizio.com/smartcast-app	Transactional
 9453435	mint green hex	D844335	http://www.99colors.net/name/mint-green	Abstain
 5876803	https://support.hpe.com	D278558	https://www.support.hp.com/	Navigational
 6407049	airline abbreviation codes	D442836	https://en.wikipedia.org/wiki/Airline_codes	Factual
 5850374	chesapeake bay bridge tunnel construction	D2159740	http://www.pilotonline.com/app/media/content/pilotonline/2014/04/marvel/marvel.html	Abstain
 7655739	duration calculator between two dates	D38705	http://www.easysurf.cc/tspan.htm	Transactional
-6884854	accuweather monthly forecast	D816437	https://www.accuweather.com/en/au/melbourne/26216/weather-forecast/26216	Factual
+6884854	accuweather monthly forecast	D816437	https://www.accuweather.com/en/au/melbourne/26216/weather-forecast/26216	Navigational
 5283460	download crome free	D21999	https://chrome-64-bit.en.softonic.com/download	Transactional
 4956720	zip codes by address	D3307973	https://www.zip-codes.com/state/mn.asp	Factual
 11236764	black vault website	D1626409	http://www.theblackvault.com/documentarchive/cia-mkultra-collection/	Navigational
@@ -97,13 +97,13 @@ qid	query	did	url	Label
 11096381	cannot start microsoft outlook 365	D49605	https://www.ablebits.com/office-addins-blog/2013/12/06/cannot-start-microsoft-outlook-solutions/	Instrumental
 7079637	the benefits of cinnamon	D351804	http://www.organicauthority.com/health/11-health-benefits-of-cinnamon.html	Abstain
 10718220	united states inflation rate 2018	D395779	https://www.statbureau.org/en/united-states/inflation	Factual
-5596221	free algebra word problem solver	D1175153	https://www.mathway.com/	Abstain
+5596221	free algebra word problem solver	D1175153	https://www.mathway.com/	Transactional
 4451430	best startup companies	D521959	https://www.inc.com/oscar-raymundo/most-valuable-startups-in-the-world.html	Abstain
 6220836	elasticity coefficient	D3486165	https://www.kbmanage.com/concept/coefficient-of-elasticity	Factual
 3341721	what are signs of pneumonia in adults	D591600	http://symptomstreatment.org/symptoms-of-walking-pneumonia-in-adults/	Factual
-8906431	gmail uc davis	D407960	https://www.ucdavis.edu/	Instrumental
+8906431	gmail uc davis	D407960	https://www.ucdavis.edu/	Abstain
 9292056	about rose	D191391	https://en.wikipedia.org/wiki/Rose	Abstain
-3646583	indiana members credit union login	D2348570	https://www.macuonline.org/	Navigational
+3646583	indiana members credit union login	D2348570	https://www.macu<.org/	Navigational
 8297353	minnesota inmates	D1113702	https://coms.doc.state.mn.us/PublicViewer/	Abstain
 10149483	nursing license lookup	D3009560	http://www.op.nysed.gov/prof/nurse/	Abstain
 7869973	netflix.com my account	D483674	https://www.netflix.com/?locale=en-US	Navigational
@@ -117,7 +117,7 @@ qid	query	did	url	Label
 7160745	how to install sharkbite	D1240909	http://www.sharkbite.com/how-to/sharkbite-push-fit-fittings-how-to-install-pex-tubing-copper-tubing-and-cpvc-tubing/	Instrumental
 12492298	funny google street view images	D1160738	https://www.hackread.com/funny-creepy-strange-google-street-view-images/	Transactional
 12473086	sage name meaning	D652171	http://www.thinkbabynames.com/meaning/1/Sage	Factual
-5198103	disabled iphone connect to itunes not working	D310116	https://discussions.apple.com/thread/4887966?start=0&tstart=0	Instrumental
+5198103	disabled iphone connect to itunes not working	D310116	https://discussions.apple.com/thread/4887966?start=0&tstart=0	Abstain
 5702692	can i cancel car insurance anytime	D2513806	https://www.confused.com/car-insurance/guides/how-to-cancel-your-car-insurance	Factual
 4004963	national weather radar live doppler	D642619	https://www.accuweather.com/en/us/national/weather-radar	Factual
 9457708	solitaire game cards	D1809124	http://www.gamesgames.com/games/card-solitaire	Abstain
@@ -133,13 +133,13 @@ qid	query	did	url	Label
 2963191	how many people died in the civil war	D1100075	http://www.bbc.com/news/magazine-17604991	Factual
 5087148	what is the most unhealthy food in the world	D2596238	http://healthyeating.sfgate.com/list-unhealthy-foods-world-10261.html	Factual
 11811614	anticathexis	D2765177	https://en.wikipedia.org/wiki/Cathexis	Factual
-12320703	morningstar moat	D485180	http://www.morningstar.com/invglossary/economic_moat.aspx	Abstain
+12320703	morningstar moat	D485180	http://www.morningstar.com/invglossary/economic_moat.aspx	Navigational
 9921003	drinking alkaline water benefits	D3237930	https://www.livestrong.com/article/498701-what-are-the-benefits-of-drinking-alkaline-water/	Abstain
 6055508	nutrients in pomegranate	D1572895	https://www.nutrition-and-you.com/pomegranate.html	Abstain
 4157029	issues in the us today	D515535	https://www.isidewith.com/polls	Abstain
 2018628	quicken loans arena	D3142901	https://en.wikipedia.org/wiki/Quicken_Loans_Arena	Factual
 9272440	idle for python	D3082895	https://docs.python.org/2/library/idle.html	Abstain
-10489690	eel skin	D2658516	https://en.wikipedia.org/wiki/Eel	Abstain
+10489690	eel skin	D2658516	https://en.wikipedia.org/wiki/Eel	Factual
 6403222	what does rosacea look like	D582783	https://www.webmd.com/skin-problems-and-treatments/understanding-rosacea-basics	Factual
 4606580	i need my desktop back	D2211497	https://answers.microsoft.com/en-us/windows/forum/windows_xp-desktop/help-to-bring-my-icons-back-on-the-screen/9d474729-aa0e-48f1-bdb4-db09eda79166	Abstain
 9207485	terre haute weather forecast	D446106	https://www.theweathernetwork.com/us/weather/indiana/terre-haute	Factual
@@ -150,11 +150,11 @@ qid	query	did	url	Label
 5950163	green valley casino henderson nv	D841026	https://greenvalleyranch.sclv.com/	Abstain
 2845109	evisa egypt	D3397026	https://www.gov.uk/foreign-travel-advice/egypt/entry-requirements	Factual
 6563893	octopus symbolism	D1990947	https://www.quora.com/What-does-an-octopus-tattoo-symbolize	Abstain
-7587688	cricinfo scores	D2527729	http://www.cricinfoscores.com/live-cricket-score/	Abstain
+7587688	cricinfo scores	D2527729	http://www.cricinfoscores.com/live-cricket-score/	Navigational
 5227898	high neutrophils low lymphocytes	D276481	https://www.healthtap.com/topics/high-neutrophils-and-low-lymphocytes	Abstain
 4489292	thin ribbon rack builder	D2271790	https://www.ultrathin.com/	Abstain
 9370198	what is this ip	D696717	https://www.iplocation.net/ip-address	Factual
-8323827	window loader	D2566078	https://www.facebook.com/windows7loader	Abstain
+8323827	window loader	D2566078	https://www.facebook.com/windows7loader	Transactional
 2981177	cooking a prime rib roast	D1061053	https://www.thekitchenmagpie.com/how-to-cook-a-prime-rib-roast/	Instrumental
 2558629	https://web-mech01.mail.mil/owa	D787286	https://www.disa.mil/enterprise-services/applications/dod-enterprise-email	Navigational
 5034234	meaning of nouns	D181255	https://en.wikipedia.org/wiki/Noun	Factual
@@ -163,7 +163,7 @@ qid	query	did	url	Label
 5596646	rmb and cny	D781466	https://en.wikipedia.org/wiki/Renminbi	Abstain
 12495375	big brother 2018	D3139647	http://www.dailymail.co.uk/tvshowbiz/celebrity_big_brother/index.html	Factual
 10321291	carteret county public library	D2313845	http://carteret.cpclib.org/cart/index.htm	Navigational
-5916148	steve mcqueen morgue photo	D815369	http://elpasotimes.typepad.com/morgue/2013/11/steve-mcqueen-dies-in-juarez.html	Abstain
+5916148	steve mcqueen morgue photo	D815369	http://elpasotimes.typepad.com/morgue/2013/11/steve-mcqueen-dies-in-juarez.html	Factual
 3041937	toothpaste for gum disease	D1144434	http://www.dailymail.co.uk/health/article-1241900/Five-best--gum-disease-treatments.html	Abstain
 6645691	ectum	D197185	https://en.wikipedia.org/wiki/Rectum	Factual
 7012369	good sam enterprises	D686384	http://www.campingworldgoodsamjobs.com/marcus-lemonis/	Abstain
@@ -174,7 +174,7 @@ qid	query	did	url	Label
 8436299	geez word	D85110	https://www.thefreedictionary.com/geez	Factual
 4642253	personal fall arrest system osha	D502305	https://en.wikipedia.org/wiki/Fall_arrest	Abstain
 4517904	paypal.com/prepaidlogin	D1651031	https://www.paypal-prepaid.com/	Navigational
-5783808	highclere castle history	D2195636	https://en.wikipedia.org/wiki/Highclere_Castle	Factual
+5783808	highclere castle history	D2195636	https://en.wikipedia.org/wiki/Highclere_Castle	Abstain
 10188502	barbie matel	D178739	http://barbie.mattel.com/shop	Navigational
 9361025	moniker definition	D115552	http://www.dictionary.com/browse/moniker	Factual
 11852975	kekegenkai	D1674781	http://naruto.wikia.com/wiki/Kekkei_Genkai	Factual
@@ -183,7 +183,7 @@ qid	query	did	url	Label
 10644623	volkswagen credit payoff phone number	D400006	http://www.vw.com/contact/	Factual
 2837080	what are the levels of organization of the human body	D497102	http://utahscience.oremjr.alpine.k12.ut.us/sciber00/7th/cells/sciber/levelorg.htm	Factual
 2591459	aids sign	D936088	https://medlineplus.gov/hivaids.html	Abstain
-4467042	deers.gov	D839208	https://www.tricare.mil/deers/	Abstain
+4467042	deers.gov	D839208	https://www.tricare.mil/deers/	Navigational
 10242996	mrsa recurrence	D251218	https://www.medscape.com/viewarticle/756817	Abstain
 8502978	oticon opn 1	D2671313	https://www.buyhear.com/products/pair-oticon-opn	Factual
 2187790	pdf add	D1029757	https://support.office.com/en-us/article/Add-a-PDF-to-your-Office-file-74819342-8F00-4AB4-BCBE-0F3DF15AB0DC	Instrumental
@@ -194,12 +194,12 @@ qid	query	did	url	Label
 6610176	new york real id	D160643	https://dmv.ny.gov/	Navigational
 12682690	b12	D2510052	https://www.drugs.com/health-guide/vitamin-b12-deficiency.html	Factual
 7711167	ford hybrid	D2504411	https://www.edmunds.com/ford/escape-hybrid/	Factual
-8968158	nocturnal	D399910	https://en.wikipedia.org/wiki/Nocturnality	Abstain
+8968158	nocturnal	D399910	https://en.wikipedia.org/wiki/Nocturnality	Factual
 8824321	how often do ball pythons eat	D463698	http://www.reptileknowledge.com/news/how-often-to-feed-a-ball-python/	Factual
 8325320	ssamsung	D2175688	http://promo.samsungpromotions.com/	Abstain
 2937790	uat sign off	D1554707	https://www.techopedia.com/definition/3887/user-acceptance-testing-uat	Abstain
 3419371	rescue bridge	D758031	http://www.hardeecounty.net/	Abstain
-2054963	mrcp	D159889	https://en.wikipedia.org/wiki/Membership_of_the_Royal_College_of_Physicians	Abstain
+2054963	mrcp	D159889	https://en.wikipedia.org/wiki/Membership_of_the_Royal_College_of_Physicians	Factual
 5922317	how to change a catalytic converter	D2287107	https://www.wikihow.com/Replace-a-Catalytic-Converter	Instrumental
 5895832	bare metal stent	D3126118	http://emedicine.medscape.com/article/2009987-overview	Abstain
 3722504	how to convert excel to csv file	D1358943	https://www.ablebits.com/office-addins-blog/2014/04/24/convert-excel-csv/	Instrumental
@@ -208,7 +208,7 @@ qid	query	did	url	Label
 6479538	semifowler	D2808424	https://en.wikipedia.org/wiki/Semi-Fowler%27s_position	Factual
 6270874	parthena	D1447999	http://www.thinkbabynames.com/meaning/0/Parthena	Factual
 8422959	blue cross blue shield individual plans	D587893	https://www.floridablue.com/	Abstain
-11317236	former wimbledon champions	D1832930	https://en.wikipedia.org/wiki/List_of_Wimbledon_Open_Era_champions	Abstain
+11317236	former wimbledon champions	D1832930	https://en.wikipedia.org/wiki/List_of_Wimbledon_Open_Era_champions	Factual
 11676190	siren wisconsin	D3225479	https://en.wikipedia.org/wiki/Siren,_Wisconsin	Factual
 2450134	baked chicken drumsticks	D423614	http://www.cooks.com/recipe/ih9cn9og/oven-baked-drumsticks.html	Factual
 2093398	definition of rv	D27469	https://en.wikipedia.org/wiki/Recreational_vehicle	Factual
@@ -231,7 +231,7 @@ qid	query	did	url	Label
 2553902	dave and busters tulsa	D955638	http://www.daveandbusters.com/	Navigational
 12486410	masters grading	D2344333	https://www.postgrad.com/advice/masters_programs/msc_degree_classification/	Abstain
 4154155	bake a pork chop	D1909069	https://www.bhg.com/recipes/how-to/cooking-basics/how-to-bake-pork-chops/	Instrumental
-2595694	access query date	D1878742	https://support.office.com/en-us/article/Examples-of-using-dates-as-criteria-in-Access-queries-AEA83B3B-46EB-43DD-8689-5FC961F21762	Factual
+2595694	access query date	D1878742	https://support.office.com/en-us/article/Examples-of-using-dates-as-criteria-in-Access-queries-AEA83B3B-46EB-43DD-8689-5FC961F21762	Transactional
 8627191	47 chromosomes	D1381114	https://ghr.nlm.nih.gov/condition/48xxyy-syndrome	Factual
 7611482	empire fire and marine insurance	D2812746	https://www.zurichna.com/	Abstain
 11941108	festival in florida	D3157059	https://www.findfestival.com/florida/	Abstain
@@ -239,13 +239,13 @@ qid	query	did	url	Label
 9937227	apps to get free internet	D508649	https://products.office.com/en-US/office-online/documents-spreadsheets-presentations-office-online	Transactional
 7263793	pains in stomach	D218168	http://www.nhs.uk/conditions/gastritis/Pages/Introduction.aspx	Abstain
 4272210	reimage repair scam windows 10	D164709	https://malwaretips.com/blogs/remove-reimage-repair-ads/	Instrumental
-7347013	how does alcohol affect the body	D770105	https://niaaa.nih.gov/alcohol-health/alcohols-effects-body	Instrumental
+7347013	how does alcohol affect the body	D770105	https://niaaa.nih.gov/alcohol-health/alcohols-effects-body	Factual
 8081610	ups tv	D1313433	http://uptv.com/	Transactional
 11446469	fiat 500 pop reviews	D1339083	https://cars.usnews.com/cars-trucks/fiat/500	Factual
 6041046	220 c to fahrenheit oven	D415801	http://www.onlineconversion.com/cooking_gasmark.htm	Factual
 8458108	what is a cnm in medical field	D78459	http://www.midwife.org/The-Credential-CNM-and-CM	Factual
 7684655	astroes	D639777	https://www.mlb.com/astros	Abstain
-10665514	standard ethnicity list	D1099834	https://en.wikipedia.org/wiki/Lists_of_ethnic_groups	Abstain
+10665514	standard ethnicity list	D1099834	https://en.wikipedia.org/wiki/Lists_of_ethnic_groups	Factual
 3676265	common weeds identification	D216649	http://www.walterreeves.com/lawn-care/weeds-identification-with-pictures/	Abstain
 8479759	i make mistakes	D163957	https://www.forbes.com/sites/amyanderson/2013/04/17/good-employees-make-mistakes-great-leaders-allow-them-to/	Abstain
 8299306	vibrio symptoms	D1698765	https://en.wikipedia.org/wiki/Vibrio_vulnificus	Factual
@@ -254,9 +254,9 @@ qid	query	did	url	Label
 12054475	nina dobrev instagram	D1521385	https://twitter.com/ninadobrev/	Abstain
 5734332	pho delivery	D353132	https://www.doordash.com/	Abstain
 8771214	who sang it	D7605	http://www.askdeb.com/music/who-sang-that-song/	Factual
-12395947	new cell phones coming out	D284487	https://www.att.com/shop/wireless/devices/cellphones.html	Factual
+12395947	new cell phones coming out	D284487	https://www.att.com/shop/wireless/devices/cellphones.html	Abstain
 11599613	google account opening	D3241457	https://myaccount.google.com/intro?hl=en	Navigational
-11823350	america got talent auditions	D366822	http://www.americasgottalentauditions.com/	Abstain
+11823350	america got talent auditions	D366822	http://www.americasgottalentauditions.com/	Navigational
 10212444	rocks and soils	D1521116	https://www.qld.gov.au/environment/land/soil/soil-explained/forms	Abstain
 10998875	paint brush types	D1609269	https://www.art-is-fun.com/artist-paint-brushes/	Factual
 4411481	microsoft hd audio driver windows 10 download	D1726009	https://www.drivereasy.com/knowledge/fix-realtek-high-definition-audio-driver-issue-for-windows-10/	Transactional
@@ -278,7 +278,7 @@ qid	query	did	url	Label
 3891406	ww email.com	D167578	https://www.google.com/gmail/about/	Navigational
 8289720	chest cold	D1372411	https://www.top10homeremedies.com/home-remedies/home-remedies-chest-congestion.html	Abstain
 3505726	who owns guadalcanal today	D290921	https://en.wikipedia.org/wiki/Guadalcanal	Factual
-8184131	transformers	D2575141	https://en.wikipedia.org/wiki/Transformers_universes	Abstain
+8184131	transformers	D2575141	https://en.wikipedia.org/wiki/Transformers_universes	Factual
 9298201	multiply by decimals	D404769	https://www.mathsisfun.com/multiplying-decimals.html	Instrumental
 2154104	chinese communist revolution 1949	D2649661	http://www.marxist.com/chinese-revolution-1949-one.htm	Factual
 4826129	history of the model t	D773907	http://www.history.com/topics/model-t	Abstain
@@ -341,7 +341,7 @@ qid	query	did	url	Label
 9205593	novelas in english	D3236680	http://www.spanishcentral.com/translate/novela	Abstain
 6645252	hhn	D2588351	https://en.wikipedia.org/wiki/Frankfurt-Hahn_Airport	Factual
 3912928	watts middle school	D1245262	https://www.centerville.k12.oh.us/	Abstain
-4705006	pip payment amounts	D111235	https://www.gov.uk/pip/overview	Transactional
+4705006	pip payment amounts	D111235	https://www.gov.uk/pip/overview	Factual
 9325960	san francisco marriott marquis union square	D2519692	http://www.marriott.com/hotels/travel/sfodt-san-francisco-marriott-marquis/	Navigational
 11053026	florida office of insurance regulation	D2733257	https://www.myfloridacfo.com/Division/Agents/Licensure/	Abstain
 9745012	amortixation	D127662	http://www.amortization-calc.com/	Abstain
@@ -356,7 +356,7 @@ qid	query	did	url	Label
 12084141	history drama	D683224	https://en.wikipedia.org/wiki/Drama	Abstain
 4412224	andy warhol parents	D2904367	https://en.wikipedia.org/wiki/Andy_Warhol	Factual
 10081223	order domino's online	D213130	https://www.dominos.com/en/	Transactional
-6623937	caucausian	D286232	https://en.wikipedia.org/wiki/Caucasian_race	Abstain
+6623937	caucausian	D286232	https://en.wikipedia.org/wiki/Caucasian_race	Factual
 6156979	sbceo	D911432	http://sbceo.org/	Navigational
 6023019	abbreviations list	D1686678	https://www.50states.com/abbreviations.htm	Abstain
 6790020	enhanced drivers license florida	D423737	http://www.flhsmv.gov/html/dlnew.html	Abstain
@@ -388,14 +388,14 @@ qid	query	did	url	Label
 7817945	+www.wwenetwork.com	D447475	https://en.wikipedia.org/wiki/WWE_Network	Navigational
 3928634	richard ramirez victims pictures	D1730758	https://en.wikipedia.org/wiki/Richard_Ramirez	Factual
 3890772	thickening of uterine lining	D1458987	https://www.leaf.tv/articles/home-remedy-to-thicken-endometrial-lining/	Abstain
-5949407	dia and company	D1988476	https://www.dia.com/who-we-are	Abstain
+5949407	dia and company	D1988476	https://www.dia.com/who-we-are	Navigational
 7849058	how to get something manufactured	D274264	https://www.shopify.com/blog/13975985-how-to-find-a-manufacturer-or-supplier-for-your-product-idea	Instrumental
 4516930	how do wheel locks work	D508264	http://www.wisegeek.org/what-are-wheel-locks.htm	Instrumental
 3135851	letter end	D205206	https://www.thebalance.com/how-to-end-a-letter-2062308	Abstain
 6314323	how long to cook pork loin	D43370	http://startcooking.com/how-to-cook-a-pork-roast	Factual
 11310974	how to cook beef roasting joint	D73632	http://www.macbeths.com/recipes-guides/cooking-guides/roasting-beef-guidance/	Instrumental
 9502061	the persian gulf war	D38258	https://en.wikipedia.org/wiki/Gulf_War	Factual
-8100006	america facts for kids	D1807761	http://www.sciencekids.co.nz/sciencefacts/countries/unitedstates.html	Abstain
+8100006	america facts for kids	D1807761	http://www.sciencekids.co.nz/sciencefacts/countries/unitedstates.html	Factual
 9129292	final fantasy xi	D1307850	http://finalfantasy.wikia.com/wiki/Final_Fantasy_XIV	Navigational
 11745991	http://www.walmart/careers.com	D2879529	https://careers.walmart.com/stores-clubs/walmart-store-jobs	Navigational
 4383468	latest bill maher	D1680112	https://www.youtube.com/user/RealTime	Abstain
@@ -406,10 +406,10 @@ qid	query	did	url	Label
 12260094	speedtyping.com	D515573	https://www.speedtypingonline.com/typing-test	Navigational
 7755473	united club san francisco	D2318341	https://loungereview.com/lounges/united-club-sfo-international/	Abstain
 8799335	first admendment	D29213	https://en.wikipedia.org/wiki/First_Amendment_to_the_United_States_Constitution	Factual
-11952218	healthy meals to cook	D1273336	http://www.myrecipes.com/healthy-recipes	Abstain
+11952218	healthy meals to cook	D1273336	http://www.myrecipes.com/healthy-recipes	Factual
 11156497	1mymountain.com	D530052	http://www.1mymountain.com/	Navigational
 5143881	mid land	D2350967	https://midlandusa.com/	Navigational
-7869115	dd 441	D3508394	http://www.dss.mil/isp/fac_clear/fac_clear_check.html	Factual
+7869115	dd 441	D3508394	http://www.dss.mil/isp/fac_clear/fac_clear_check.html	Abstain
 4467984	fort pickett zip code	D1224557	https://en.wikipedia.org/wiki/Fort_Pickett	Factual
 5971799	highwayman	D1339854	https://en.wikipedia.org/wiki/Highwayman_(The_Highwaymen_album)	Factual
 12344428	louisville in	D1043147	https://en.wikipedia.org/wiki/Louisville,_Kentucky	Factual
@@ -427,7 +427,7 @@ qid	query	did	url	Label
 12582886	recommendation letters for employment	D969155	http://essaysmith.com/index.php/referenceletters	Abstain
 9980535	daily forex rates	D3299582	https://www.dailyfx.com/eur-usd	Abstain
 10784490	petro truck stops	D209995	https://www.ta-petro.com/	Abstain
-8516302	high rate cds 6%	D67336	https://www.depositaccounts.com/cd/	Factual
+8516302	high rate cds 6%	D67336	https://www.depositaccounts.com/cd/	Abstain
 3502567	skpye download	D905028	http://download.cnet.com/skype/windows/	Transactional
 6305074	bactrim ds 800-160	D3014281	https://www.drugs.com/sfx/bactrim-side-effects.html	Factual
 9923798	best marine sealant	D2090547	http://www.boatus.com/boattech/casey/sealant.asp	Abstain
@@ -459,19 +459,19 @@ qid	query	did	url	Label
 9191413	1 hotels new york	D647251	https://www.1hotels.com/central-park	Navigational
 6434722	iphone nfc pairing	D3272773	https://finance.yahoo.com/news/what-is-nfc-and-why-does-it-matter-for-the-iphone-6-96456683964.html	Abstain
 9716463	blue cross blue shield illinois	D1194410	http://www.bcbsil.com/member/payment-options	Navigational
-5053325	ageonline	D3063170	http://www.theage.com.au/	Abstain
+5053325	ageonline	D3063170	http://www.theage.com.au/	Navigational
 8137972	ga. football	D1826702	http://www.espn.com/college-football/team/_/id/61/georgia-bulldogs	Abstain
-8357093	medicaid mississippi	D2222960	https://medicaid.ms.gov/providers/	Abstain
+8357093	medicaid mississippi	D2222960	https://medicaid.ms.gov/providers/	Navigational
 6034291	vegetarian biryani	D124093	http://www.manjulaskitchen.com/vegetable-biryani/	Factual
 7815666	josephbanks	D2601759	https://www.josbank.com/	Navigational
 9288822	difference between organic and non organic	D1529455	https://www.theguardian.com/environment/2014/jul/11/organic-food-more-antioxidants-study	Abstain
 12217829	spine problems scoliosis	D770835	https://www.spine-health.com/conditions/scoliosis/scoliosis-what-you-need-know	Abstain
-7041667	reforms	D230339	https://en.wikipedia.org/wiki/Reform	Abstain
+7041667	reforms	D230339	https://en.wikipedia.org/wiki/Reform	Factual
 4524111	tikal national park	D1570259	https://en.wikipedia.org/wiki/Tikal	Factual
 5139443	dsl reports	D3443085	http://www.dslreports.com/speedtest	Navigational
 3393631	easy panna cotta recipe	D1067780	https://www.laylita.com/recipes/panna-cotta-recipe/	Factual
 7683230	irs logon	D480234	https://www.irs.gov/	Navigational
-2905571	store coffee	D1162422	https://www.thespruce.com/how-to-store-coffee-765325	Abstain
+2905571	store coffee	D1162422	https://www.thespruce.com/how-to-store-coffee-765325	Instrumental
 6567633	wolwerin	D865077	https://en.wikipedia.org/wiki/Wolverine	Factual
 4108066	ett medical	D275129	https://patient.info/doctor/exercise-tolerance-testing-pro	Abstain
 3958126	how to make a baked potato in the oven	D3352503	https://www.thekitchn.com/how-to-bake-a-potato-three-easy-methods-157073	Instrumental
@@ -490,7 +490,7 @@ qid	query	did	url	Label
 8467749	how big is 40 acres	D145485	https://answers.yahoo.com/question/index?qid=20060815133804AAzWhZO	Factual
 11132524	pain in the left side of stomach	D712554	http://www.quickanddirtytips.com/health-fitness/mens-health/when-to-worry-about-abdominal-pain	Abstain
 2463316	kubota .com	D142635	https://www.kubotausa.com/tractors	Navigational
-6910468	perks for work	D2699687	https://www.perksatwork.com/	Abstain
+6910468	perks for work	D2699687	https://www.perksatwork.com/	Navigational
 4057389	african chimpanzee	D2638933	http://www.outtoafrica.nl/animals/engchimpanzee.html	Factual
 2510378	digestion of fat	D274125	https://www.verywell.com/fat-structure-and-functions-2506533	Abstain
 11048227	holidays throughout the year	D865541	http://www.holidayinsights.com/everyday.htm	Abstain
@@ -505,9 +505,9 @@ qid	query	did	url	Label
 6958448	gdp increase	D1254674	https://tradingeconomics.com/united-states/gdp-growth	Abstain
 5659127	usda zones for planting	D1761237	https://en.wikipedia.org/wiki/USDA_plant_hardiness_zone	Factual
 10289781	bengals	D3345328	http://www.espn.com/nfl/team/_/name/cin/cincinnati-bengals	Abstain
-10257360	www.bdo online banking	D535254	https://www.bdo.com.ph/personal	Navigational
+10257360	www.bdo online banking	D535254	https://www.bdo.com.ph/personal	Transactional
 4248235	washington house of representatives	D823679	https://en.wikipedia.org/wiki/Washington_House_of_Representatives	Factual
-5651583	bogdanoff twins	D2237980	https://en.wikipedia.org/wiki/Bogdanov_affair	Abstain
+5651583	bogdanoff twins	D2237980	https://en.wikipedia.org/wiki/Bogdanov_affair	Factual
 9487682	how tall is betty white	D1784730	http://abcnews.go.com/Entertainment/93-year-betty-white-reveals-biggest-regret/story?id=29954939	Factual
 3978969	www.albertsons.com weekly ad	D2130618	http://www1.albertsons.com/ShopStores/tools/store-locator.page	Navigational
 4764584	how to remove price stickers	D1927014	http://www.howtocleanstuff.net/how-to-remove-sticker-residue/	Instrumental
@@ -521,7 +521,7 @@ qid	query	did	url	Label
 7117819	the weather	D1522284	https://www.youtube.com/watch?v=rD6FRDd9Hew	Abstain
 5533348	free radio code	D1484395	http://www.nairaland.com/616468/unlock-car-stereo-free-here	Factual
 7067609	medicare.fcso/fee schedule	D640615	http://medicare.fcso.com/	Navigational
-3694565	track my phone for free	D1089968	https://play.google.com/store/apps/details?id=com.fsp.android.phonetracker&hl=en	Instrumental
+3694565	track my phone for free	D1089968	https://play.google.com/store/apps/details?id=com.fsp.android.phonetracker&hl=en	Transactional
 10717058	in vitro diagnosis	D2311238	https://www.alliedmarketresearch.com/ivd-in-vitro-diagnostics-market	Abstain
 3000397	dacia automobile	D1708324	https://en.wikipedia.org/wiki/Automobile_Dacia	Factual
 7080420	home building cost per square foot	D503125	https://www.thumbtack.com/p/home-building-cost-by-sqft	Factual
@@ -559,7 +559,7 @@ qid	query	did	url	Label
 8758648	carolingian renaissance	D2055325	http://www.heeve.com/middle-ages-history/carolingian-renaissance.html	Factual
 8686419	ncb online	D674175	https://quickpay.net/	Transactional
 5700666	calhoun schools calhoun ga	D3479375	http://www.calhounschools.org/	Navigational
-5179625	angry birds wikipedia	D2244370	https://en.wikipedia.org/wiki/Angry_Birds	Factual
+5179625	angry birds wikipedia	D2244370	https://en.wikipedia.org/wiki/Angry_Birds	Navigational
 6078930	noun university	D181255	https://en.wikipedia.org/wiki/Noun	Abstain
 3240778	rue recipe	D2225533	https://www.thespruce.com/making-gravy-with-a-roux-1809220	Factual
 12507175	queen size bedspreads on sale	D1824282	https://www.bedbathandbeyond.com/store/category/bedding/bedding/bedspreads/12014/	Abstain
@@ -609,7 +609,7 @@ qid	query	did	url	Label
 9154316	cyclooxygenase	D740568	https://www.bhf.org.uk/heart-matters-magazine/medical/drug-cabinet/aspirin	Abstain
 10982547	dmv nj gov	D1491530	https://www.dmv.org/nj-new-jersey/license-plates.php	Navigational
 12083493	at&t star codes for phones	D2782652	https://www.att.com/esupport/article.html#!/wireless/KM1051624	Factual
-9231501	quetzalcoatl god	D1403188	https://en.wikipedia.org/wiki/Quetzalcoatl	Abstain
+9231501	quetzalcoatl god	D1403188	https://en.wikipedia.org/wiki/Quetzalcoatl	Factual
 4300299	vue tv	D1678835	https://www.playstation.com/en-us/network/vue/roku/	Abstain
 2526240	kentucky finance cabinet	D1293022	https://finance.ky.gov/services/eprocurement/Pages/default.aspx	Navigational
 7742120	tor project download windows	D467839	https://www.torproject.org/download/download-easy.html.en	Transactional
@@ -623,10 +623,10 @@ qid	query	did	url	Label
 3566808	world health organisation breastfeeding uk	D1030797	https://www.unicef.org/nutrition/index_24824.html	Abstain
 5560193	toronto blue jays jacket	D942257	https://www.mlb.com/bluejays	Abstain
 5869621	office of medicaid inspector general	D2124557	https://oig.hhs.gov/	Navigational
-10738717	pharaonic egypt	D388563	https://en.wikipedia.org/wiki/History_of_Ancient_Egypt	Factual
+10738717	pharaonic egypt	D388563	https://en.wikipedia.org/wiki/History_of_Ancient_Egypt	Abstain
 8736665	projector screen	D1723777	https://www.cnet.com/how-to/the-big-picture-projection-screen-basics/	Abstain
 12649048	calhoun	D3365114	https://en.wikipedia.org/wiki/Calhoun,_Georgia	Factual
-7461329	hoise	D1927599	http://www.whois.net/	Abstain
+7461329	hoise	D1927599	http://www.whois.net/	Navigational
 7241798	best bridesmaid dresses online	D1874107	https://www.theknot.com/fashion/bridesmaid-dresses	Transactional
 5090987	lufthansa slogan	D1493849	https://en.wikipedia.org/wiki/Lufthansa	Abstain
 5486325	homogenization	D3290797	https://www.thefreedictionary.com/homogenization	Factual
@@ -635,7 +635,7 @@ qid	query	did	url	Label
 8316899	ppo	D1211779	https://www.ehealthinsurance.com/health-plans/ppo	Abstain
 12808560	external display	D1752718	https://help.ubuntu.com/stable/ubuntu-help/display-dual-monitors.html	Abstain
 4705032	amsterdam tulip season	D964280	http://www.rearviewmirror.tv/holland-tulip-festival/	Abstain
-12134299	spectrum internet upload speeds	D1722827	https://www.spectrum.com/internet.html	Transactional
+12134299	spectrum internet upload speeds	D1722827	https://www.spectrum.com/internet.html	Abstain
 11478649	fuzzy bears	D1591171	https://en.wikipedia.org/wiki/Fozzie_Bear	Factual
 2705956	usb-a	D1101059	http://www.belkin.com/us/p/P-F2CU029/	Abstain
 4657415	oven temp for pork tenderloin	D1181668	https://cooking.stackexchange.com/questions/10464/what-temperature-to-cook-a-pork-tenderloin-at	Abstain
@@ -672,10 +672,10 @@ qid	query	did	url	Label
 8842293	byte order	D143558	http://myrepono.com/faq/4	Abstain
 10813103	lithuanian language	D2232595	http://www.lituanus.org/1982_1/82_1_01.htm	Factual
 9833839	balsalazide disodium 750mg	D3229952	https://www.medicinenet.com/balsalazide_disodium/article.htm	Factual
-3604837	colonialism in nigeria	D1078017	https://en.wikipedia.org/wiki/History_of_Nigeria	Factual
+3604837	colonialism in nigeria	D1078017	https://en.wikipedia.org/wiki/History_of_Nigeria	Abstain
 3483716	crafting guide gw2	D1337095	https://wiki.guildwars2.com/wiki/Crafting	Factual
 11002586	james v reyes	D1866493	http://wikipicky.com/tv-celebrity/laura-ingraham-married-husband-divorce-salary-and-net-worth.html	Abstain
-7341580	quicken interest rates	D1111125	https://www.quickenloans.com/mortgage-rates	Instrumental
+7341580	quicken interest rates	D1111125	https://www.quickenloans.com/mortgage-rates	Navigational
 8583897	what is cold brew coffee	D1518600	https://www.chowhound.com/recipes/basic-cold-brewed-coffee-30487	Factual
 5991435	gym membership	D2536790	https://www.anytimefitness.com.au/why-anytime/	Abstain
 3059100	how do you sell a car	D2016765	https://www.moneyadviceservice.org.uk/en/articles/how-to-sell-your-car-privately	Instrumental
@@ -689,21 +689,21 @@ qid	query	did	url	Label
 10166111	html style tag	D1988378	https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style	Abstain
 7671096	ncstate fair	D2518901	http://ncstatefair.org/	Navigational
 3968127	can jews eat shrimp	D811272	http://www.jewfaq.org/kashrut.htm	Factual
-7887593	amaric	D953839	https://en.wikipedia.org/wiki/Amharic_language	Abstain
+7887593	amaric	D953839	https://en.wikipedia.org/wiki/Amharic_language	Factual
 10242417	st pauline	D3019	https://en.wikipedia.org/wiki/Pauline_Christianity	Factual
 7301188	brale	D122571	https://en.wikipedia.org/wiki/Braille	Factual
-11049660	vrbo.con	D351340	https://www.vrbo.com/	Navigational
+11049660	vrbo.com	D351340	https://www.vrbo.com/	Navigational
 10528982	apply for costco membership	D1217452	https://www.costco.com/join-costco.html	Instrumental
 11899116	currency for cuba	D1341285	http://www.visitcuba.com/travel-guide/travel-tips/	Abstain
 2721984	best rain gutters	D2939532	https://www.hometips.com/buying-guides/rain-gutters.html	Abstain
 10007408	outlook set up	D1313549	https://support.office.com/en-us/article/Set-up-email-in-the-Outlook-for-Android-app-886db551-8dfa-4fd5-b835-f8e532091872	Instrumental
-3510655	history of trolls	D2166265	https://en.wikipedia.org/wiki/Troll	Factual
+3510655	history of trolls	D2166265	https://en.wikipedia.org/wiki/Troll	Abstain
 12111058	histrionic personality disorder examples	D545576	https://en.wikipedia.org/wiki/Histrionic_personality_disorder	Factual
 7222547	2016 vw gti	D3135014	https://www.caranddriver.com/volkswagen/golf-gti	Factual
 11660140	what mobile phone is best for me	D186494	https://www.tomsguide.com/us/best-smartphones,review-2223.html	Factual
 6275995	transmembrane potential	D257379	https://www.khanacademy.org/science/biology/human-biology/neuron-nervous-system/a/the-membrane-potential	Abstain
 8451042	surgery for detached retina	D374291	https://www.medicinenet.com/retinal_detachment/article.htm	Abstain
-8556941	interpreting blood test results	D307469	http://alternativehealth.co.nz/cancer/tests/interpret.htm	Abstain
+8556941	interpreting blood test results	D307469	http://alternativehealth.co.nz/cancer/tests/interpret.htm	Instrumental
 12049461	severe abdominal pain	D311012	https://www.betterhealth.vic.gov.au/health/conditionsandtreatments/abdominal-pain-in-adults	Abstain
 5044997	medical information bureau	D387319	https://www.annualmedicalreport.com/howto-request-medical-report/the-medical-information-bureau-inc-mib/	Abstain
 7486766	finance companies for bad credit	D1351001	http://www.bankrate.com/finance/credit/low-credit-score-borrowers-get-mortgage.aspx	Abstain
@@ -714,10 +714,10 @@ qid	query	did	url	Label
 9288548	ny state wcb	D2265452	http://www.wcb.ny.gov/content/main/Contact.jsp	Navigational
 5716022	fit-dna test	D878059	https://www.cancer.org/cancer/colon-rectal-cancer/detection-diagnosis-staging/screening-tests-used.html	Abstain
 7253823	the ups store.com	D1987936	https://www.theupsstore.com/store-services	Navigational
-12624693	the founder of google	D983531	https://en.wikipedia.org/wiki/History_of_Google	Abstain
-9150931	england and united kingdom	D3346068	https://www.thoughtco.com/united-kingdom-great-britain-and-england-1435711	Factual
+12624693	the founder of google	D983531	https://en.wikipedia.org/wiki/History_of_Google	Factual
+9150931	england and united kingdom	D3346068	https://www.thoughtco.com/united-kingdom-great-britain-and-england-1435711	Abstain
 7645147	oee performance calculation	D1263591	https://www.leanproduction.com/oee.html	Abstain
-12498670	venous thromboembolism	D108999	https://www.cdc.gov/ncbddd/dvt/facts.html	Abstain
+12498670	venous thromboembolism	D108999	https://www.cdc.gov/ncbddd/dvt/facts.html	Factual
 5862223	cone shapes	D2750772	https://en.wikipedia.org/wiki/Cone	Factual
 7173137	demerara sugar	D2180807	http://bakingbites.com/2008/01/what-are-demerara-turbinado-and-muscovado-sugars/	Abstain
 6242478	rassmussen presidential apporval	D1530859	https://www.rasmussenreports.com/public_content/politics/obama_administration/daily_presidential_tracking_poll	Navigational
@@ -742,7 +742,7 @@ qid	query	did	url	Label
 9498497	alan alda	D2191924	http://www.imdb.com/name/nm0000257/	Factual
 2133423	iron maiden albums	D287581	https://en.wikipedia.org/wiki/Iron_Maiden	Factual
 5561357	damsels in distress	D321172	https://en.wikipedia.org/wiki/Damsel_in_distress	Factual
-5213630	genocide rwanda	D54806	http://www.history.com/topics/rwandan-genocide	Factual
+5213630	genocide rwanda	D54806	http://www.history.com/topics/rwandan-genocide	Abstain
 10293283	california non resident tax form	D1352019	https://ttlc.intuit.com/questions/1901271-how-do-i-file-a-nonresident-state-return	Instrumental
 10314314	what is the abbreviation for for example	D2260141	https://brians.wsu.edu/2016/05/25/e-g-i-e/	Factual
 11287722	how to treat mites on chickens	D1656539	https://www.mypetchicken.com/backyard-chickens/chicken-help/What-are-the-signs-of-mites-or-lice-and-how-do-I-H79.aspx	Instrumental
@@ -757,27 +757,27 @@ qid	query	did	url	Label
 8484994	cross curricular lessons	D1976153	https://www.edutopia.org/blog/cross-curricular-teaching-deeper-learning-ben-johnson	Abstain
 10312005	symptoms of high bun	D1330507	http://www.kidneyfailureweb.com/creatinine/431.html	Abstain
 7295935	fifa world cup women 2019	D1905209	http://www.fifa.com/womensworldcup/index.html	Navigational
-10679336	gutters installed	D305184	https://www.fixr.com/costs/install-gutters	Abstain
+10679336	gutters installed	D305184	https://www.fixr.com/costs/install-gutters	Factual
 4136575	md medical license lookup	D2250485	https://www.health.ny.gov/professionals/doctors/conduct/license_lookup.htm	Abstain
 7994203	first bank	D3142173	http://www.bankatfirst.com/content/first-financial-bank/home.html	Abstain
 4741151	match in excel	D1173665	https://exceljet.net/excel-functions/excel-match-function	Factual
 8459689	nfl schedule today on tv	D97934	http://www.nfl.com/network/schedule	Navigational
-5268280	salah wikipedia	D2360731	https://en.wikipedia.org/wiki/Salah	Factual
+5268280	salah wikipedia	D2360731	https://en.wikipedia.org/wiki/Salah	Navigational
 7510294	animated engines	D2694073	http://www.animatedengines.com/diesel.html	Navigational
 4140997	cherokee reservations	D2576438	http://www.cherokee.org/	Abstain
 11657450	ucl thumb	D1325479	https://www.verywell.com/gamekeepers-thumb-2548605	Abstain
-3971110	excel qm 5.2	D1145130	http://wps.prenhall.com/bp_taylor_introms_11/220/56508/14466195.cw/content/	Instrumental
+3971110	excel qm 5.2	D1145130	http://wps.prenhall.com/bp_taylor_introms_11/220/56508/14466195.cw/content/	Factual
 8416832	reference a book	D679515	http://www.neilstoolbox.com/bibliography-creator/reference-book.htm	Instrumental
 7731703	allstate uber claims	D350312	https://www.allstate.com/claims/report-claim.aspx	Navigational
 5312489	dla stores web	D811686	http://www.dla.mil/	Navigational
-4004816	applied kinesiology	D2527559	http://www.skepdic.com/akinesiology.html	Abstain
+4004816	applied kinesiology	D2527559	http://www.skepdic.com/akinesiology.html	Factual
 6971189	examples of hydrophobic molecules	D3207521	https://www.thoughtco.com/definition-of-hydrophobic-605228	Factual
-6860810	f1 result today	D2735499	https://www.formula1.com/	Navifational
+6860810	f1 result today	D2735499	https://www.formula1.com/	Navigational
 12530541	bpa	D1987577	https://bpaal.com/	Navigational
 10861012	word to pdf converter online free	D1652164	https://www.wordtopdf.com/	Transactional
-12763969	dinovite for dogs	D3048638	http://www.dinovite.com/all-products/dinovite-for-dogs/	Abstain
+12763969	dinovite for dogs	D3048638	http://www.dinovite.com/all-products/dinovite-for-dogs/	Navigational
 10503773	valentine's day meaning and definition	D364457	https://en.wikipedia.org/wiki/Valentine%27s_Day	Factual
-3005683	racism for kids	D452575	https://www.merriam-webster.com/dictionary/racism	Abstain
+3005683	racism for kids	D452575	https://www.merriam-webster.com/dictionary/racism	Factual
 12750426	airbed uk	D3181402	https://www.airbnb.co.uk/	Abstain
 11919865	emirates seat pitch	D2262515	https://www.seatguru.com/airlines/Emirates_Airlines/information.php	Abstain
 8888451	directv	D1294338	https://www.att.com/directv/experience.html	Abstain
@@ -790,7 +790,7 @@ qid	query	did	url	Label
 8969553	is death penalty effective	D2379743	http://oadp.org/facts/13-reasons	Factual
 8322451	airline tracking flights	D663326	http://flightaware.com/	Abstain
 8218400	tri county electric celina tn	D2876350	http://www.tcemc.org/	Navigational
-4438801	price chopper rewards	D2841999	https://www.mypricechopper.com/shop-save/save/chopper-shopper-rewards	Abstain
+4438801	price chopper rewards	D2841999	https://www.mypricechopper.com/shop-save/save/chopper-shopper-rewards	Navigational
 11910682	sheree real housewives of atlanta	D1653563	https://en.wikipedia.org/wiki/The_Real_Housewives_of_Atlanta	Factual
 6717497	calculate attrition	D108562	https://www.ngdata.com/what-is-attrition-rate/	Instrumental
 9870312	corgis	D2155270	http://www.dogbreedinfo.com/pembrokecorgi.htm	Abstain

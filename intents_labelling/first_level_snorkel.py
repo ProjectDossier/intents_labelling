@@ -1,5 +1,6 @@
 import re
 from enum import IntEnum
+import Levenshtein as lev
 
 import pandas as pd
 from snorkel.labeling import labeling_function
@@ -217,6 +218,7 @@ def lf_login_lookup(x):
         "sign up",
         "site",
         "account",
+        "website",
     ]
     if x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
@@ -242,7 +244,6 @@ def lf_match_url(x):
     elif x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
     else:
-        li = list(x.query.lower().split(" "))
         r1 = re.search(r"https:\/\/www\.(.*?)\/", x.url)
         r2 = re.search(r"http:\/\/www\.(.*?)\/", x.url)
         r3 = re.search(r"http:\/\/(.*?)\/", x.url)
@@ -254,14 +255,21 @@ def lf_match_url(x):
             st = r2.group(1)
         elif r3:
             st = r3.group(1)
-            print(st)
         elif r4:
             st = r4.group(1)
-        return (
-            FirstLevelIntents.NAVIGATIONAL
-            if any(word in st.lower() for word in li)
-            else FirstLevelIntents.ABSTAIN
-        )
+        st = re.sub(".uk","",st)
+        st = re.sub(".com","",st)
+        st = re.sub(".org","",st)
+        st = re.sub(".gov","",st)
+        st_q = x.query.lower()
+        st_url = st.lower()
+        ratio = lev.ratio(st_q,st_url)
+        if (ratio >= 0.55):
+            return FirstLevelIntents.NAVIGATIONAL
+        else:
+            return FirstLevelIntents.ABSTAIN
+
+
 
 
 @labeling_function(pre=[spacy])
@@ -297,7 +305,7 @@ def lf_match_url2(x):
 
 
 first_level_functions = [
-    lf_match_url2,
+    lf_match_url,
     lf_download_lookup,
     lf_audio_video_lookup,
     lf_transaction_lookup,
