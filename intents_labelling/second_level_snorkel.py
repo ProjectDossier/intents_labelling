@@ -1,5 +1,4 @@
 import re
-import nltk
 from enum import IntEnum
 
 from snorkel.labeling import labeling_function
@@ -81,7 +80,6 @@ def lf_is_ing_verb(x):
     if x.doc[0].text in transactional_verbs:
         return SecondLevelIntents.ABSTAIN
     elif x.doc[0].pos_ == "VERB" and "ing" in x.doc[0].text:
-        #print("ING",x.doc[0])
         return SecondLevelIntents.INSTRUMENTAL
     else:
         return SecondLevelIntents.ABSTAIN
@@ -90,12 +88,14 @@ def lf_is_ing_verb(x):
 @labeling_function()
 def lf_howto(x):
     keywords = ["how to", "how do", "how can", "how does"]
-    if any(re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I) for word in keywords):
-        #print("query",x.query)
-        return SecondLevelIntents.INSTRUMENTAL
-    else:
-        return SecondLevelIntents.ABSTAIN
-
+    return (
+        SecondLevelIntents.INSTRUMENTAL
+        if any(
+            re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+            for word in keywords
+        )
+        else SecondLevelIntents.ABSTAIN
+    )
 
 @labeling_function()
 def lf_wikihow_lookup(x):
@@ -105,10 +105,11 @@ def lf_wikihow_lookup(x):
         "support.office.com",
         "support.google.com",
     ]
-    if any(url in x.url.lower() for url in urls):
-        return SecondLevelIntents.INSTRUMENTAL
-    else:
-        return SecondLevelIntents.ABSTAIN
+    return (
+        SecondLevelIntents.INSTRUMENTAL
+        if any(url in x.url.lower() for url in urls)
+        else SecondLevelIntents.ABSTAIN
+    )
 
 
 """FACTUAL Labelling functions"""
@@ -272,11 +273,11 @@ second_level_functions = [
     lf_is_verb,
     lf_howto,
     lf_is_ing_verb,
-    #lf_wikihow_lookup,
+    lf_wikihow_lookup,
     lf_keyword_lookup,
     lf_question_words,
     lf_facts_lookup,
-    #lf_finance_lookup,
+    lf_finance_lookup,
     lf_phone,
     lf_definition,
     lf_digit,

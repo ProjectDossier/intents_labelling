@@ -244,23 +244,12 @@ def lf_match_url(x):
     elif x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
     else:
-        r1 = re.search(r"https:\/\/www\.(.*?)\/", x.url)
-        r2 = re.search(r"http:\/\/www\.(.*?)\/", x.url)
-        r3 = re.search(r"http:\/\/(.*?)\/", x.url)
-        r4 = re.search(r"https:\/\/(.*?)\/", x.url)
+        r = re.search(r"https:\/\/www\.(.*?)\/|http:\/\/www\.(.*?)\/|http:\/\/(.*?)\/|https:\/\/(.*?)\/", x.url)
         st = ""
-        if r1:
-            st = r1.group(1)
-        elif r2:
-            st = r2.group(1)
-        elif r3:
-            st = r3.group(1)
-        elif r4:
-            st = r4.group(1)
-        st = re.sub(".uk","",st)
-        st = re.sub(".com","",st)
-        st = re.sub(".org","",st)
-        st = re.sub(".gov","",st)
+        for i in range(1,5):
+            if r.group(i) is not None:
+             st = r.group(i)
+        st = re.sub(r"\.uk|\.com|\.org|\.gov|\.net", "", st)
         st_q = x.query.lower()
         st_url = st.lower()
         ratio = lev.ratio(st_q,st_url)
@@ -268,40 +257,6 @@ def lf_match_url(x):
             return FirstLevelIntents.NAVIGATIONAL
         else:
             return FirstLevelIntents.ABSTAIN
-
-
-
-
-@labeling_function(pre=[spacy])
-def lf_match_url2(x):
-    if any(re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
-            for word in transactional_keywords):
-        return FirstLevelIntents.TRANSACTIONAL
-    if any(re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
-           for word in factual_keywords):
-        return FirstLevelIntents.ABSTAIN
-    elif x.doc[0].text.lower() in informational_start_words:
-        return FirstLevelIntents.ABSTAIN
-    else:
-        r1 = re.search(r"https:\/\/www\.(.*?)\/", x.url)
-        r2 = re.search(r"http:\/\/www\.(.*?)\/", x.url)
-        r3 = re.search(r"http:\/\/(.*?)\/", x.url)
-        r4 = re.search(r"https:\/\/(.*?)\/", x.url)
-        st = ""
-        if r1:
-            st = r1.group(1)
-        elif r2:
-            st = r2.group(1)
-        elif r3:
-            st = r3.group(1)
-        elif r4:
-            st = r4.group(1)
-        for ent in x.doc.ents:
-            if ent.label_ in ne_labels:
-                l = ent.text.lower().split(" ")
-                if any(words in st for words in l):
-                    return FirstLevelIntents.NAVIGATIONAL
-        return FirstLevelIntents.ABSTAIN
 
 
 first_level_functions = [
