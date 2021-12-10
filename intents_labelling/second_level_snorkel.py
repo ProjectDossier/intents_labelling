@@ -14,14 +14,12 @@ class SecondLevelIntents(IntEnum):
     FACTUAL = 0
     ABSTAIN = -1
 
+
 transactional_verbs = [
     "download",
-    "downloading"
-    "obtain",
-    "obtaining"
-    "access",
-    "accessing"
-    "watch",
+    "downloading" "obtain",
+    "obtaining" "access",
+    "accessing" "watch",
     "watching",
     "install",
     "installing",
