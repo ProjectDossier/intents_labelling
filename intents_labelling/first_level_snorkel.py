@@ -1,5 +1,6 @@
 import re
 from enum import IntEnum
+import Levenshtein as lev
 
 import pandas as pd
 from snorkel.labeling import labeling_function
@@ -209,6 +210,7 @@ def lf_login_lookup(x):
         "sign up",
         "site",
         "account",
+        "website",
     ]
     if x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
@@ -238,66 +240,24 @@ def lf_match_url(x):
     elif x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
     else:
-        li = list(x.query.lower().split(" "))
-        r1 = re.search(r"https:\/\/www\.(.*?)\/", x.url)
-        r2 = re.search(r"http:\/\/www\.(.*?)\/", x.url)
-        r3 = re.search(r"http:\/\/(.*?)\/", x.url)
-        r4 = re.search(r"https:\/\/(.*?)\/", x.url)
+        r = re.search(r"https:\/\/www\.(.*?)\/|http:\/\/www\.(.*?)\/|http:\/\/(.*?)\/|https:\/\/(.*?)\/", x.url)
         st = ""
-        if r1:
-            st = r1.group(1)
-        elif r2:
-            st = r2.group(1)
-        elif r3:
-            st = r3.group(1)
-            print(st)
-        elif r4:
-            st = r4.group(1)
-        return (
-            FirstLevelIntents.NAVIGATIONAL
-            if any(word in st.lower() for word in li)
-            else FirstLevelIntents.ABSTAIN
-        )
+        for i in range(1,5):
+            if r.group(i) is not None:
+             st = r.group(i)
+        st = re.sub(r"\.uk|\.com|\.org|\.gov|\.net", "", st)
+        st_q = x.query.lower()
+        st_url = st.lower()
+        ratio = lev.ratio(st_q,st_url)
+        if (ratio >= 0.55):
+            return FirstLevelIntents.NAVIGATIONAL
+        else:
+            return FirstLevelIntents.ABSTAIN
 
-
-@labeling_function(pre=[spacy])
-def lf_match_url2(x):
-    if any(
-        re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
-        for word in transactional_keywords
-    ):
-        return FirstLevelIntents.TRANSACTIONAL
-    if any(
-        re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
-        for word in factual_keywords
-    ):
-        return FirstLevelIntents.ABSTAIN
-    elif x.doc[0].text.lower() in informational_start_words:
-        return FirstLevelIntents.ABSTAIN
-    else:
-        r1 = re.search(r"https:\/\/www\.(.*?)\/", x.url)
-        r2 = re.search(r"http:\/\/www\.(.*?)\/", x.url)
-        r3 = re.search(r"http:\/\/(.*?)\/", x.url)
-        r4 = re.search(r"https:\/\/(.*?)\/", x.url)
-        st = ""
-        if r1:
-            st = r1.group(1)
-        elif r2:
-            st = r2.group(1)
-        elif r3:
-            st = r3.group(1)
-        elif r4:
-            st = r4.group(1)
-        for ent in x.doc.ents:
-            if ent.label_ in ne_labels:
-                l = ent.text.lower().split(" ")
-                if any(words in st for words in l):
-                    return FirstLevelIntents.NAVIGATIONAL
-        return FirstLevelIntents.ABSTAIN
 
 
 first_level_functions = [
-    lf_match_url2,
+    lf_match_url,
     lf_download_lookup,
     lf_audio_video_lookup,
     lf_transaction_lookup,
