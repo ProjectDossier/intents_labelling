@@ -65,7 +65,10 @@ with open("data/helpers/verbs.txt") as fp:
 
 @labeling_function(pre=[spacy])
 def lf_is_verb(x):
-    if any(re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I) for word in factual_keywords):
+    if any(
+        re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
+        for word in factual_keywords
+    ):
         return SecondLevelIntents.FACTUAL
     elif x.doc[0].text in verb_list:
         return SecondLevelIntents.INSTRUMENTAL
@@ -94,6 +97,7 @@ def lf_howto(x):
         )
         else SecondLevelIntents.ABSTAIN
     )
+
 
 @labeling_function()
 def lf_wikihow_lookup(x):
@@ -154,6 +158,7 @@ def lf_facts_lookup(x):
         else SecondLevelIntents.ABSTAIN
     )
 
+
 @labeling_function()
 def lf_finance_lookup(x):
     keywords = [
@@ -175,6 +180,7 @@ def lf_finance_lookup(x):
         )
         else SecondLevelIntents.ABSTAIN
     )
+
 
 @labeling_function()
 def lf_phone(x):
@@ -258,11 +264,10 @@ def lf_url_lookup(x):
     )
 
 
-
 @labeling_function(pre=[spacy])
 def lf_wiki(x):
     if "wikipedia.org" in x.url.lower():
-            return SecondLevelIntents.FACTUAL
+        return SecondLevelIntents.FACTUAL
     else:
         return SecondLevelIntents.ABSTAIN
 
@@ -280,5 +285,5 @@ second_level_functions = [
     lf_definition,
     lf_digit,
     lf_url_lookup,
-    lf_wiki
+    lf_wiki,
 ]
