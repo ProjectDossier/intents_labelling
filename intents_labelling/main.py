@@ -11,5 +11,8 @@ if __name__ == "__main__":
 
     df = sl.create_final_label(df=df)
 
+    train_size = 0.8
+    df = sl.create_train_validation_split(df=df, train_size=train_size)
+
     outfile = f"data/output/orcas_{len(df)}.tsv"
     save_orcas(df=df, outfile=outfile)
