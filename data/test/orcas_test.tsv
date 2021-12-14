@@ -810,15 +810,15 @@ qid	query	did	url	label_manual
 3900596	hunter thompson	D2242108	https://en.wikipedia.org/wiki/Hunter_S._Thompson	Factual
 5355420	surrealism paintings	D2276740	https://www.artsy.net/article/artsy-editorial-what-is-surrealism	Abstain
 12535724	edit access	D2933214	https://support.office.com/en-us/article/Modify-edit-or-change-a-report-2837AEA7-0EE5-4C81-9F0F-5CF324C2C3BD	Instrumental
-6150275	echanesia	D3276154	https://www.drugs.com/mtm/echinacea.html	Abstain
+6150275	echanesia	D3276154	https://www.drugs.com/mtm/echinacea.html	Factual
 6143467	wakemed web	D1054780	https://www.wakemed.org/	Navigational
 12190039	guinness harp	D993289	https://www.guinness.com/	Abstain
 6671099	andromeda	D1581733	http://www.bbc.co.uk/science/space/universe/key_places/andromeda_galaxy	Abstain
 5888945	sage publishers	D2218141	https://uk.sagepub.com/en-gb/eur/home	Navigational
 12130269	natural gas meter	D250509	https://en.wikipedia.org/wiki/Gas_meter	Factual
-2094675	national priorities	D1204892	https://www.nationalpriorities.org/budget-basics/federal-budget-101/	Abstain
+2094675	national priorities	D1204892	https://www.nationalpriorities.org/budget-basics/federal-budget-101/	Navigational
 8264044	stuxnet wiki	D1125914	https://en.wikipedia.org/wiki/Stuxnet	Factual
-5393000	construed in a sentence	D3357746	http://www.yourdictionary.com/construe	Abstain
+5393000	construed in a sentence	D3357746	http://www.yourdictionary.com/construe	Factual
 2612386	what does the lion symbolize	D1461195	https://www.linkedin.com/pulse/20140706050123-176052476-the-lion-symbolizes-strength-courage-and-leadership	Factual
 2575168	orthopedic spine specialist	D417040	https://en.wikipedia.org/wiki/Orthopedic_surgery	Abstain
 3668062	tomgreen	D1655279	https://en.wikipedia.org/wiki/Tom_Green	Factual
@@ -837,7 +837,7 @@ qid	query	did	url	label_manual
 9134319	orange theory gift cards	D1413508	https://www.orangetheoryfitness.com/memberships	Abstain
 6676567	contractor lookup california	D2174706	http://www.cslb.ca.gov/About_Us/Contact_CSLB.aspx	Abstain
 8898309	print ruler actual size	D1734435	https://printable-ruler.net/	Factual
-4477361	cat scan with contrast	D1370293	http://www.mayoclinic.org/tests-procedures/ct-scan/about/pac-20393675	Abstain
+4477361	cat scan with contrast	D1370293	http://www.mayoclinic.org/tests-procedures/ct-scan/about/pac-20393675	Factual
 3688433	group activities for adults	D30905	http://www.wilderdom.com/games/PsychologicalExercises.html	Abstain
 10852056	what is a carbon copy email	D3269656	https://www.howtogeek.com/128028/htg-explains-whats-the-difference-between-cc-and-bcc-when-sending-an-email/	Factual
 10285469	futures stock	D3501350	http://money.cnn.com/data/premarket/	Abstain
@@ -867,7 +867,7 @@ qid	query	did	url	label_manual
 9875553	las vegas airport	D2215895	http://airport-lasvegas.com/	Navigational
 6761805	pdf to word convertoer	D54184	https://www.pdftoword.com/	Navigational
 8167790	cheap flight reservations	D51558	https://www.expedia.com/Flights	Abstain
-6393115	winco cda	D1025776	https://www.wincofoods.com/	Abstain
+6393115	winco cda	D1025776	https://www.wincofoods.com/	Navigational
 3774202	organic clay	D75810	https://en.wikipedia.org/wiki/Clay	Abstain
 6098163	bank key meaning	D1299669	https://archive.sap.com/discussions/thread/1664723	Factual
 12668609	stpre	D2513196	https://store.google.com/	Navigational
@@ -890,7 +890,7 @@ qid	query	did	url	label_manual
 9665624	psychology graduate jobs	D1351847	https://www.prospects.ac.uk/careers-advice/what-can-i-do-with-my-degree/psychology	Abstain
 4319114	what does loaded question mean	D503844	https://en.wikipedia.org/wiki/Loaded_question	Factual
 11169531	matcha tea benefits dr oz	D111624	https://wellnessmama.com/37430/matcha-green-tea-benefits/	Abstain
-8397051	sldcada navy login	D3296729	https://www.reference.com/technology/log-v23-sldcada-website-48a5a2835548478f	Abstain
+8397051	sldcada navy login	D3296729	https://www.reference.com/technology/log-v23-sldcada-website-48a5a2835548478f	Navigational
 11712433	routing and switching	D1319264	http://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna-routing-switching.html	Abstain
 12226002	water based polyurethane	D1606805	http://theflooringgirl.com/featured/oil-vs-water-based-polyurethane-which-is-bes-for-refinishing-hardwood-floors.html	Abstain
 11741285	pregnancy trimesters	D1041420	https://www.verywell.com/the-three-trimesters-of-pregnancy-2760089	Abstain
@@ -919,7 +919,7 @@ qid	query	did	url	label_manual
 8572600	food sensitivity test reviews	D2878332	https://sciencebasedmedicine.org/igg-food-intolerance-tests-what-does-the-science-say/	Abstain
 10145967	12 lakhs	D1172161	https://en.wikipedia.org/wiki/Lakh	Factual
 9397693	miami dade building department forms	D950509	http://www.miamidade.gov/permits/forms-checklists.asp	Navigational
-3999862	alarax	D1860054	https://www.drugs.com/atarax.html	Abstain
+3999862	alarax	D1860054	https://www.drugs.com/atarax.html	Factual
 10648275	delete outlook mail	D2915806	http://www.intowindows.com/how-to-close-delete-outlook-com-account/	Instrumental
 10245059	providence	D1706358	http://www.providence.org/default	Navigational
 11304476	eurogolf	D2304154	http://www.europeantour.com/	Abstain
@@ -935,7 +935,7 @@ qid	query	did	url	label_manual
 2204910	www.colonialpenn.com life insurance	D918700	https://colonialpenn.com/	Navigational
 11260120	how many americans served in ww1	D190119	https://en.wikipedia.org/wiki/United_States_in_World_War_I	Factual
 2411654	honor mi	D2322120	https://www.tripadvisor.com/Tourism-g42315-Honor_Benzie_County_Michigan-Vacations.html	Abstain
-8406696	tai air	D2706614	http://www.thaiairways.com/en/Terms_condition/baggage_policy.page	Abstain
+8406696	tai air	D2706614	http://www.thaiairways.com/en/Terms_condition/baggage_policy.page	Navigational
 9745052	bose earbuds bluetooth	D3075312	https://www.bose.com/en_us/products/headphones/wireless_headphones.html	Abstain
 3724304	utv weather forecast	D481396	https://www.metoffice.gov.uk/public/weather/forecast	Factual
 4664437	what is the best prescription diet pill	D212829	https://www.dietspotlight.com/prescription-weight-loss/	Factual
@@ -960,7 +960,7 @@ qid	query	did	url	label_manual
 5463690	fllotto	D2377039	http://www.floridalottery.com/winningNumbers.do	Navigational
 11665029	www,wellsfargocom	D31659	https://www.wellsfargo.com/	Navigational
 5866352	crock pot sirloin tip roast	D1961212	http://mamaldiane.com/sirloin-tip-roast-in-the-slow-cooker/	Instrumental
-7800090	discover pay online	D2832090	https://www.doxo.com/info/discover	Abstain
+7800090	discover pay online	D2832090	https://www.doxo.com/info/discover	Transactional
 6445933	lackland afb county	D716032	https://en.wikipedia.org/wiki/Lackland_Air_Force_Base	Factual
 2138825	democratic party chairman	D341400	https://www.democrats.org/	Abstain
 11550877	atalectasis	D1539172	https://www.healthline.com/health/atelectasis	Factual
@@ -976,7 +976,7 @@ qid	query	did	url	label_manual
 3605282	www.antennasearch.com	D2531135	http://www.antennasearch.com/	Navigational
 8843408	what is spinal meningitis	D2003553	https://www.webmd.com/children/understanding-meningitis-basics	Factual
 3220143	ebs flexible spending account	D148046	https://www.lifetimebenefitsolutions.com/	Abstain
-10249081	volt drop calculator	D3188009	http://www.rapidtables.com/calc/wire/voltage-drop-calculator.htm	Navigational
+10249081	volt drop calculator	D3188009	http://www.rapidtables.com/calc/wire/voltage-drop-calculator.htm	Transactional
 10603185	my ring account	D352140	https://ring.com/	Navigational
 4437153	delusion of jealousy	D492691	http://www.freethoughtlebanon.net/2012/10/pathological-jealousy-its-symptoms-and-definition/	Abstain
 7428367	residual volume	D3307379	https://www.merriam-webster.com/medical/residual%20volume	Factual
