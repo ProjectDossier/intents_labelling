@@ -2,7 +2,6 @@ import re
 from enum import IntEnum
 import Levenshtein as lev
 
-import pandas as pd
 from snorkel.labeling import labeling_function
 from snorkel.preprocess.nlp import SpacyPreprocessor
 
@@ -240,20 +239,22 @@ def lf_match_url(x):
     elif x.doc[0].text.lower() in informational_start_words:
         return FirstLevelIntents.ABSTAIN
     else:
-        r = re.search(r"https:\/\/www\.(.*?)\/|http:\/\/www\.(.*?)\/|http:\/\/(.*?)\/|https:\/\/(.*?)\/", x.url)
+        r = re.search(
+            r"https:\/\/www\.(.*?)\/|http:\/\/www\.(.*?)\/|http:\/\/(.*?)\/|https:\/\/(.*?)\/",
+            x.url,
+        )
         st = ""
-        for i in range(1,5):
+        for i in range(1, 5):
             if r.group(i) is not None:
-             st = r.group(i)
+                st = r.group(i)
         st = re.sub(r"\.uk|\.com|\.org|\.gov|\.net", "", st)
         st_q = x.query.lower()
         st_url = st.lower()
-        ratio = lev.ratio(st_q,st_url)
-        if (ratio >= 0.55):
+        ratio = lev.ratio(st_q, st_url)
+        if ratio >= 0.55:
             return FirstLevelIntents.NAVIGATIONAL
         else:
             return FirstLevelIntents.ABSTAIN
-
 
 
 first_level_functions = [
