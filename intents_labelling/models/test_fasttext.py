@@ -1,7 +1,9 @@
 import fasttext
 import numpy as np, pandas as pd
 from gensim.utils import simple_preprocess
-from intents_labelling.models.train_fasttext import query_to_url
+from intents_labelling.models.train_fasttext import query_plus_url
+from intents_labelling.models.train_fasttext import url_strip
+from intents_labelling.models.train_fasttext import url_domain
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.metrics import classification_report
 
@@ -18,17 +20,9 @@ def load_mod(data_path: str):
     return model
 
 
-def save_test(data_path, df, data, label):
-    df[[data, label]].to_csv(
-        data_path,
-        index=False,
-        sep=" ",
-        header=None,
-        quoting=csv.QUOTE_NONE,
-        quotechar="",
-        escapechar=" ",
-    )
-
+def save_test(data_path,df,data,label):
+    df[[data, label]].to_csv(data_path,index=False,sep=' ',header=None,quoting=csv.QUOTE_NONE,quotechar="",escapechar=" ")
+    
 
 def prepare_test(df, data, label):
     df = df[[data, label]]
@@ -58,9 +52,7 @@ if __name__ == "__main__":
     t = load_test("data/input/test_pred_lab.tsv")
     print(t)
     pt = prepare_test(t, "query", "label_man")
-    st = save_test(
-        "intents_labelling/train_test_files/test_man.txt", pt, "query", "label_man"
-    )
+    st = save_test("intents_labelling/train_test_files/test_man.txt", pt, "query", "label_man")
     model = load_mod("intents_labelling/model_files/ftext_train.bin")
     print(model_test("intents_labelling/train_test_files/test_man.txt"))
     pl = prediction_labels(model, pt, "query", "label_man")

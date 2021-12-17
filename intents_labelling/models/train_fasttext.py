@@ -5,7 +5,8 @@ import csv
 import re
 
 
-def query_to_url(df, data, url):
+def query_plus_url(df, data, url):
+
     """
     preprocesses the query into query and url
     """
@@ -52,20 +53,20 @@ def url_domain(df):
     return df
 
 
-def prepare_train(df):
+def prepare_data(df,data,label):
     """puts the data into fast text format"""
-    df = df[["query", "Label"]]
+    df = df[[data, label]]
     df = df.fillna("")
     df.iloc[:, 0] = df.iloc[:, 0].apply(lambda x: " ".join(simple_preprocess(x)))
     df.iloc[:, 1] = df.iloc[:, 1].apply(lambda x: "__label__" + x)
     return df
 
 
-def model_train(df, data_path):
+def model_train(df,data_path,data,label):
     """
     train the model
     """
-    df[["query", "Label"]].to_csv(
+    df[[data, label]].to_csv(
         data_path,
         index=False,
         sep=" ",
@@ -89,6 +90,6 @@ if __name__ == "__main__":
     url_st.to_csv("strip.csv", index=False)
     ds_train = dataset.sample(frac=0.8, random_state=10)
     ds_test = dataset[~dataset.index.isin(ds_train.index)]
-    df2 = prepare_train(ds_train)
-    model = model_train(df2, "intents_labelling/train_test_files/train.txt")
+    df2 = prepare_data(ds_train,"query","Label")
+    model = model_train(df2, "intents_labelling/train_test_files/train.txt","query","Label")
     save_mod(model, "intents_labelling/model_files/ftext_train.bin")
