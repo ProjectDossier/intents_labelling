@@ -101,7 +101,7 @@ qid	query	did	url	label_manual
 4451430	best startup companies	D521959	https://www.inc.com/oscar-raymundo/most-valuable-startups-in-the-world.html	Abstain
 6220836	elasticity coefficient	D3486165	https://www.kbmanage.com/concept/coefficient-of-elasticity	Factual
 3341721	what are signs of pneumonia in adults	D591600	http://symptomstreatment.org/symptoms-of-walking-pneumonia-in-adults/	Factual
-8906431	gmail uc davis	D407960	https://www.ucdavis.edu/	Abstain
+8906431	gmail uc davis	D407960	https://www.ucdavis.edu/	Navigational
 9292056	about rose	D191391	https://en.wikipedia.org/wiki/Rose	Abstain
 3646583	indiana members credit union login	D2348570	https://www.macu<.org/	Navigational
 8297353	minnesota inmates	D1113702	https://coms.doc.state.mn.us/PublicViewer/	Abstain
@@ -112,7 +112,7 @@ qid	query	did	url	label_manual
 5334312	pocker online	D3393604	https://www.replaypoker.com/	Transactional
 9852818	sdtax	D699924	https://iwr.sdtreastax.com/	Abstain
 12647221	knight rider tv show	D3326048	https://www.nbc.com/knight-rider-classic	Factual
-4949999	air canada plane	D1608555	https://www.aircanada.com/ca/en/aco/home.html	Abstain
+4949999	air canada plane	D1608555	https://www.aircanada.com/ca/en/aco/home.html	Navigational
 10394371	ffafsa	D59966	https://fafsa.ed.gov/	Navigational
 7160745	how to install sharkbite	D1240909	http://www.sharkbite.com/how-to/sharkbite-push-fit-fittings-how-to-install-pex-tubing-copper-tubing-and-cpvc-tubing/	Instrumental
 12492298	funny google street view images	D1160738	https://www.hackread.com/funny-creepy-strange-google-street-view-images/	Transactional
@@ -216,7 +216,7 @@ qid	query	did	url	label_manual
 11180868	new	D235553	http://www.manchestertwp.com/	Abstain
 9055783	places to stay near the grand canyon	D717091	https://www.expedia.com/Grand-Canyon-Hotels.d6140738.Travel-Guide-Hotels	Abstain
 2923656	google dublin	D318778	https://www.google.com/contact/	Navigational
-9926672	sql getdate format	D1640571	http://www.sql-server-helper.com/tips/date-formats.aspx	Navigational
+9926672	sql getdate format	D1640571	http://www.sql-server-helper.com/tips/date-formats.aspx	Factual
 11535415	dissolving plaque on teeth	D2162797	http://www.healthtipsportal.com/secret-techniques-to-remove-tartar-plaque-and-heal-teeth-cavities-at-home-naturally/	Instrumental
 7515775	what is christian character	D930284	http://www.discipleshiptools.org/apps/articles/?articleid=37081&columnid=4166	Factual
 5329079	columbus zoo and aquarium ohio	D282794	https://columbuszoo.org/	Navigational
@@ -306,7 +306,7 @@ qid	query	did	url	label_manual
 8152660	transfer number plate	D112725	https://www.gov.uk/personalised-vehicle-registration-numbers/transferring-a-registration-number	Instrumental
 6684766	what are giblets	D414278	http://www.wisegeek.org/what-are-giblets.htm	Factual
 10001539	how to answer how are you	D3543235	http://www.cnn.com/2009/LIVING/worklife/03/04/cb.answering.tough.interview.questions/index.html	Instrumental
-12274859	shuterstock	D3167940	https://premier.shutterstock.com/	Abstain
+12274859	shuterstock	D3167940	https://premier.shutterstock.com/	Navigational
 10883177	outlook notifications	D2486269	https://www.outlook-tips.net/tips/windows-10-and-outlooks-new-email-notifications/	Abstain
 7397461	spe blood test	D2766021	https://www.webmd.com/a-to-z-guides/serum-protein-electrophoresis-spe	Factual
 5783820	pandora the goddess	D2314841	http://www.theoi.com/Heroine/Pandora.html	Factual
@@ -641,7 +641,7 @@ qid	query	did	url	label_manual
 4657415	oven temp for pork tenderloin	D1181668	https://cooking.stackexchange.com/questions/10464/what-temperature-to-cook-a-pork-tenderloin-at	Abstain
 7505169	amazon telephone number customer service	D116851	https://techboomers.com/t/amazon-customer-service	Factual
 8274638	four forces of nature	D821435	http://www.quirkyscience.com/four-fundamental-forces/	Abstain
-11904946	atcts account registration	D1983621	http://atc.us.army.mil/	Abstain
+11904946	atcts account registration	D1983621	http://atc.us.army.mil/	Navigational
 11781550	bipolar condition	D26067	https://www.nimh.nih.gov/health/topics/bipolar-disorder/index.shtml	Factual
 11123874	when was the thermometer invented	D2701515	https://www.thoughtco.com/the-history-of-the-thermometer-1992525	Factual
 12767053	www.netspend.com/activate visa	D141818	https://www.netspend.com/	Navigational
@@ -964,7 +964,7 @@ qid	query	did	url	label_manual
 6445933	lackland afb county	D716032	https://en.wikipedia.org/wiki/Lackland_Air_Force_Base	Factual
 2138825	democratic party chairman	D341400	https://www.democrats.org/	Abstain
 11550877	atalectasis	D1539172	https://www.healthline.com/health/atelectasis	Factual
-12756843	mercy general hospital	D1145009	http://www.dignityhealthcareers.org/careers/Facilities/MercyGeneralHospital/Careers/index.htm	Factual
+12756843	mercy general hospital	D1145009	http://www.dignityhealthcareers.org/careers/Facilities/MercyGeneralHospital/Careers/index.htm	Abstain
 5147649	best surgery for acid reflux	D1084338	https://www.healthline.com/health/gerd/surgery	Abstain
 11702172	poison ivy actress	D3558834	http://www.dailymail.co.uk/tvshowbiz/article-3655480/Poison-Ivy-portrayed-actress-14-years-older-new-series-Batman-spin-Gotham.html	Abstain
 2601156	connecticut elections	D1652968	http://www.courant.com/politics/elections/	Abstain
