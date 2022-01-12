@@ -8,6 +8,7 @@ def remove_punctuation(df, data_column):
         "[" + string.punctuation + "]",
         " ",
     )
+    return df
 
 
 def query_plus_url(df, query_column, url_column):
