@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from snorkel.labeling import PandasLFApplier, LFAnalysis
 from snorkel.labeling.model import LabelModel
+from snorkel.labeling.model.baselines import MajorityLabelVoter
 
 from first_level_snorkel import FirstLevelIntents, first_level_functions
 from second_level_snorkel import SecondLevelIntents, second_level_functions
@@ -21,8 +22,11 @@ class SnorkelLabelling:
         applier = PandasLFApplier(lfs=self.lfs)
         L_train = applier.apply(df=df)
 
+        # print(L_train)
+
         label_model = LabelModel(cardinality=2, verbose=True)
         label_model.fit(L_train=L_train, n_epochs=500, log_freq=100, seed=123)
+        label_model = MajorityLabelVoter(cardinality=2, verbose=True)
 
         print(LFAnalysis(L=L_train, lfs=self.lfs).lf_summary())
 
@@ -53,6 +57,7 @@ class SnorkelLabelling:
 
         label_model = LabelModel(cardinality=2, verbose=True)
         label_model.fit(L_train=L_train, n_epochs=500, log_freq=100, seed=123)
+        label_model = MajorityLabelVoter(cardinality=2, verbose=True)
 
         print(LFAnalysis(L=L_train, lfs=self.second_level).lf_summary())
 
