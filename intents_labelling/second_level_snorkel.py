@@ -17,9 +17,12 @@ class SecondLevelIntents(IntEnum):
 
 transactional_verbs = [
     "download",
-    "downloading" "obtain",
-    "obtaining" "access",
-    "accessing" "watch",
+    "downloading",
+    "obtain",
+    "obtaining",
+    "access",
+    "accessing",
+    "watch",
     "watching",
     "install",
     "installing",
@@ -69,7 +72,7 @@ def lf_is_verb(x):
         re.search(rf"(?:\s|^){word}(?:\s|$)", x.query, flags=re.I)
         for word in factual_keywords
     ):
-        return SecondLevelIntents.FACTUAL
+        return SecondLevelIntents.ABSTAIN
     elif x.doc[0].text in verb_list:
         return SecondLevelIntents.INSTRUMENTAL
     else:
@@ -274,8 +277,8 @@ def lf_wiki(x):
 
 second_level_functions = [
     lf_is_verb,
-    lf_howto,
     lf_is_ing_verb,
+    lf_howto,
     lf_wikihow_lookup,
     lf_keyword_lookup,
     lf_question_words,
