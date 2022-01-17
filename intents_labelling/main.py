@@ -3,7 +3,7 @@ from snorkel_labelling import SnorkelLabelling
 
 if __name__ == "__main__":
 
-    df = load_labelled_orcas(data_path="data/test/orcas_test.tsv")
+    df = load_labelled_orcas(data_path="data/input/orcas_train_2000000.tsv")
 
     sl = SnorkelLabelling()
     df = sl.predict_first_level(df=df)

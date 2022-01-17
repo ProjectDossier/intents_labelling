@@ -47,4 +47,3 @@ if __name__ == "__main__":
     df = pd.read_csv("data_column/input/test_raw_1000.tsv", sep="\t")
 
     df2 = get_domains(df, url_column="url")
-
