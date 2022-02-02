@@ -1,4 +1,4 @@
-from data_loaders import load_labelled_orcas, save_orcas
+from ..data_loaders import load_labelled_orcas, save_orcas
 from snorkel_labelling import SnorkelLabelling
 
 if __name__ == "__main__":
