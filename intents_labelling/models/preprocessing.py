@@ -4,10 +4,13 @@ import pandas as pd
 
 
 def remove_punctuation(df, data_column):
+    print(df.head())
+    print('aaaaaa')
     df[data_column] = df[data_column].str.replace(
         "[" + string.punctuation + "]",
         " ",
     )
+    print(df.head())
     return df
 
 

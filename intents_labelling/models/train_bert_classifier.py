@@ -14,12 +14,18 @@ from transformers import BertForSequenceClassification
 from transformers import BertTokenizer
 
 from intents_labelling.data_loaders import load_labelled_orcas
-from intents_labelling.models.helpers import (
+from intents_labelling.models.evaluation import (
     f1_score_func,
     recall_score_func,
     precision_score_func,
     evaluate,
     get_label_dict,
+)
+from intents_labelling.models.preprocessing import (
+    remove_punctuation,
+    query_plus_url,
+    get_domains,
+    get_url_stripped,
 )
 
 seed_val = 42
@@ -57,8 +63,8 @@ def prepare_data(df: pd.DataFrame, data_type: str, data_column: str, label_colum
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_name", default="bert_query", type=str)
-    parser.add_argument("--infile", default="data/output/orcas_1000000.tsv", type=str)
+    parser.add_argument("--model_name", default="bert_query_2M", type=str)
+    parser.add_argument("--infile", default="data/output/orcas_2000000.tsv", type=str)
     parser.add_argument("--out_path", default="models/bert/", type=str)
 
     args = parser.parse_args()
@@ -73,7 +79,13 @@ if __name__ == "__main__":
 
     df = load_labelled_orcas(data_path=args.infile)
 
-    df[data_column] = "Query: " + df["query"] + " URL: " + df["url"]
+    g_d = get_domains(df, "url")
+    print(g_d.head())
+    d_p = remove_punctuation(g_d, "domain_names")
+    print(d_p.head())
+    df = query_plus_url(d_p, "query", "domain_names")
+    # df[data_column] = "query : " + df["query"] + " url : " + df["url"]
+    print("preprocessed")
 
     label_dict = get_label_dict(df[label_column].unique().tolist())
 
@@ -95,7 +107,7 @@ if __name__ == "__main__":
 
     # %%
 
-    batch_size = 32
+    batch_size = 64
     optimizer = AdamW(model.parameters(), lr=1e-5, eps=1e-8)
     epochs = 10
 

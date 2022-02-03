@@ -1,4 +1,4 @@
-from intents_labelling.models.helpers import (
+from intents_labelling.models.evaluation import (
     precision_score_func,
     recall_score_func,
     f1_score_func,
