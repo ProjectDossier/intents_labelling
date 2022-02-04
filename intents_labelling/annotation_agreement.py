@@ -1,3 +1,4 @@
+"""This module calculates inter-annotation agreement score for the testset."""
 from sklearn.metrics import cohen_kappa_score
 import pandas as pd
 

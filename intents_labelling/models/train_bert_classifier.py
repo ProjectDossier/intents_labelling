@@ -14,12 +14,18 @@ from transformers import BertForSequenceClassification
 from transformers import BertTokenizer
 
 from intents_labelling.data_loaders import load_labelled_orcas
-from intents_labelling.models.helpers import (
+from intents_labelling.models.evaluation import (
     f1_score_func,
     recall_score_func,
     precision_score_func,
     evaluate,
     get_label_dict,
+)
+from intents_labelling.models.preprocessing import (
+    remove_punctuation,
+    query_plus_url,
+    get_domains,
+    get_url_stripped,
 )
 
 seed_val = 42
@@ -43,7 +49,7 @@ def prepare_data(df: pd.DataFrame, data_type: str, data_column: str, label_colum
 
     input_ids = encoded_data["input_ids"]
     attention_masks = encoded_data["attention_mask"]
-    labels = torch.tensor(df.loc[df.data_type == data_type, label_column].values)
+    labels = torch.tensor(df.loc[df["data_type"] == data_type, label_column].values)
 
     dataset = TensorDataset(input_ids, attention_masks, labels)
 
@@ -57,8 +63,8 @@ def prepare_data(df: pd.DataFrame, data_type: str, data_column: str, label_colum
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_name", default="bert_query", type=str)
-    parser.add_argument("--infile", default="data/output/orcas_10000.tsv", type=str)
+    parser.add_argument("--model_name", default="bert_query_2M", type=str)
+    parser.add_argument("--infile", default="data/output/orcas_2000000.tsv", type=str)
     parser.add_argument("--out_path", default="models/bert/", type=str)
 
     args = parser.parse_args()
@@ -69,9 +75,17 @@ if __name__ == "__main__":
         os.makedirs(f"{args.out_path}/{args.model_name}")
 
     label_column = "Label"
-    data_column = "query"
+    data_column = "query_url"
 
     df = load_labelled_orcas(data_path=args.infile)
+
+    g_d = get_domains(df, "url")
+    print(g_d.head())
+    d_p = remove_punctuation(g_d, "domain_names")
+    print(d_p.head())
+    df = query_plus_url(d_p, "query", "domain_names")
+    # df[data_column] = "query : " + df["query"] + " url : " + df["url"]
+    print("preprocessed")
 
     label_dict = get_label_dict(df[label_column].unique().tolist())
 
@@ -93,18 +107,18 @@ if __name__ == "__main__":
 
     # %%
 
-    batch_size = 32
+    batch_size = 64
     optimizer = AdamW(model.parameters(), lr=1e-5, eps=1e-8)
     epochs = 10
 
     dataloader_train = prepare_data(
-        df=df, data_type="train", data_column=data_column, label_column=label_column
+        df=df, data_type="train", data_column=data_column, label_column="label"
     )
     dataloader_validation = prepare_data(
         df=df,
         data_type="validation",
         data_column=data_column,
-        label_column=label_column,
+        label_column="label",
     )
 
     scheduler = get_linear_schedule_with_warmup(

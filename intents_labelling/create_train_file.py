@@ -10,6 +10,9 @@ from intents_labelling.data_loaders import (
 def prepare_train_set(
     orcas_df: pd.DataFrame, test_df: pd.DataFrame, train_size: int
 ) -> pd.DataFrame:
+    """Function prepares sample of the training data.
+    It makes sure that none of the queries selected for the training data sample
+    does not appear in the test dataset."""
 
     test_df["test"] = True
     merged_df = pd.merge(orcas_df, test_df, how="outer")
@@ -24,7 +27,7 @@ if __name__ == "__main__":
     testset_location = "data/test/orcas_test.tsv"
     raw_orcas_location = "data/input/orcas.tsv"
 
-    train_size = 1000000
+    train_size = 2000000
     trainset_location = f"data/input/orcas_train_{train_size}.tsv"
 
     test_df = load_labelled_orcas(data_path=testset_location)

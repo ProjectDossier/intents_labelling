@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader, SequentialSampler, TensorDataset
 from transformers import BertForSequenceClassification, BertTokenizer
 
 from intents_labelling.data_loaders import load_labelled_orcas
-from intents_labelling.models.helpers import (
+from intents_labelling.models.evaluation import (
     evaluate,
     f1_score_func,
     accuracy_per_class,
@@ -38,8 +38,8 @@ def pred(test_data):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_name", default="bert_query", type=str)
-    parser.add_argument("--infile", default="data/output/orcas_10000.tsv", type=str)
+    parser.add_argument("--model_name", default="bert_query_url_1M", type=str)
+    parser.add_argument("--infile", default="data/test/orcas_test.tsv", type=str)
     parser.add_argument("--model_path", default="models/bert/", type=str)
 
     args = parser.parse_args()
@@ -47,8 +47,9 @@ if __name__ == "__main__":
     labels_file = "labels.json"
 
     df = load_labelled_orcas(data_path=args.infile)
-    label_column = "Label"
-    data_column = "query"
+    label_column = "label_manual"
+    data_column = "query_url"
+    df[data_column] = "query : " + df["query"] + " url : " + df["url"]
 
     label_dict = read_labels(
         infile=f"{args.model_path}/{args.model_name}/{labels_file}"
