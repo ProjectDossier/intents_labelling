@@ -1,5 +1,7 @@
 # Intents Labelling project
 
+[![DOI](https://researchdata.tuwien.ac.at/badge/DOI/10.48436/pp7xz-n9a06.svg)](https://doi.org/10.48436/pp7xz-n9a06)
+
 
 ## Installation 
 
