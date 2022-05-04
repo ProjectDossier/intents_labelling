@@ -1,5 +1,11 @@
 # Intents Labelling project
 
+This package serves as basis for the paper "ORCAS-I: Queries Annotated with Intent using Weak Supervision"
+
+link to the paper: https://arxiv.org/abs/2205.00926
+
+doi: https://doi.org/10.1145/3477495.3531737
+
 
 ## Installation 
 
