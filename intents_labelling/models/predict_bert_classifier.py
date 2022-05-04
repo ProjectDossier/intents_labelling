@@ -6,13 +6,18 @@ from torch.utils.data import DataLoader, SequentialSampler, TensorDataset
 from transformers import BertForSequenceClassification, BertTokenizer
 
 from intents_labelling.data_loaders import load_labelled_orcas
-from intents_labelling.models.helpers import (
+from intents_labelling.models.evaluation import (
     evaluate,
     f1_score_func,
     accuracy_per_class,
     precision_score_func,
     recall_score_func,
     read_labels,
+)
+from intents_labelling.models.preprocessing import (
+    remove_punctuation,
+    query_plus_url,
+    get_domains,
 )
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -38,28 +43,47 @@ def pred(test_data):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_name", default="bert_query", type=str)
-    parser.add_argument("--infile", default="data/output/orcas_10000.tsv", type=str)
-    parser.add_argument("--model_path", default="models/bert/", type=str)
+    parser.add_argument("--model_name", default="xtremedistil", type=str)
+    parser.add_argument("--model_params", default="query_url_2M-64-level2", type=str)
+    parser.add_argument("--infile", default="data/test/orcas_test.tsv", type=str)
+    parser.add_argument("--model_path", default="models/xbert/", type=str)
+    parser.add_argument(
+        "--input_features", default="query", choices=("query", "query_url"), type=str
+    )
 
     args = parser.parse_args()
 
     labels_file = "labels.json"
 
     df = load_labelled_orcas(data_path=args.infile)
-    label_column = "Label"
-    data_column = "query"
+    label_column = "label_manual"
+
+    if args.input_features == "query":
+        data_column = "query"
+    elif args.input_features == "query_url":
+        data_column = "query_url"
+    else:
+        raise ValueError("data_column can be only query or query_url")
+
+    if args.model_name == "xtremedistil":
+        model_name = "microsoft/xtremedistil-l6-h384-uncased"
+    elif args.model_name == "bert":
+        model_name = "bert-base-uncased"
+
+    g_d = get_domains(df, "url")
+    d_p = remove_punctuation(g_d, "domain_names")
+    df = query_plus_url(d_p, "query", "domain_names")
 
     label_dict = read_labels(
-        infile=f"{args.model_path}/{args.model_name}/{labels_file}"
+        infile=f"{args.model_path}/{args.model_name}_{args.model_params}/{labels_file}"
     )
 
-    tokenizer = BertTokenizer.from_pretrained("bert-base-uncased", do_lower_case=True)
+    tokenizer = BertTokenizer.from_pretrained(model_name, do_lower_case=True)
 
     df["label"] = df[label_column].replace(label_dict)
 
     model = BertForSequenceClassification.from_pretrained(
-        "bert-base-uncased",
+        model_name,
         num_labels=len(label_dict),
         output_attentions=False,
         output_hidden_states=False,
@@ -69,11 +93,11 @@ if __name__ == "__main__":
 
     # %%
 
-    for modelname in range(1, 9):
-        print(f"{modelname=}")
+    for model_version in range(1, 9):
+        print(f"{model_version=}")
         model.load_state_dict(
             torch.load(
-                f"{args.model_path}/{args.model_name}/finetuned_BERT_epoch_{modelname}.model",
+                f"{args.model_path}/{args.model_name}_{args.model_params}/finetuned_BERT_epoch_{model_version}.model",
                 map_location=torch.device("cpu"),
             )
         )

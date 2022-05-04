@@ -14,12 +14,17 @@ from transformers import BertForSequenceClassification
 from transformers import BertTokenizer
 
 from intents_labelling.data_loaders import load_labelled_orcas
-from intents_labelling.models.helpers import (
+from intents_labelling.models.evaluation import (
     f1_score_func,
     recall_score_func,
     precision_score_func,
     evaluate,
     get_label_dict,
+)
+from intents_labelling.models.preprocessing import (
+    remove_punctuation,
+    query_plus_url,
+    get_domains,
 )
 
 seed_val = 42
@@ -37,13 +42,13 @@ def prepare_data(df: pd.DataFrame, data_type: str, data_column: str, label_colum
         add_special_tokens=True,
         return_attention_mask=True,
         padding="max_length",
-        max_length=256,
+        max_length=128,
         return_tensors="pt",
     )
 
     input_ids = encoded_data["input_ids"]
     attention_masks = encoded_data["attention_mask"]
-    labels = torch.tensor(df.loc[df.data_type == data_type, label_column].values)
+    labels = torch.tensor(df.loc[df["data_type"] == data_type, label_column].values)
 
     dataset = TensorDataset(input_ids, attention_masks, labels)
 
@@ -57,35 +62,57 @@ def prepare_data(df: pd.DataFrame, data_type: str, data_column: str, label_colum
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_name", default="bert_query", type=str)
-    parser.add_argument("--infile", default="data/output/orcas_10000.tsv", type=str)
-    parser.add_argument("--out_path", default="models/bert/", type=str)
+    parser.add_argument("--model_name", default="xtremedistil", type=str)
+    parser.add_argument("--model_params", default="query_url_2M-64-level2", type=str)
+    parser.add_argument("--infile", default="data/output/orcas_2000000.tsv", type=str)
+    parser.add_argument("--out_path", default="models/xbert/", type=str)
+    parser.add_argument(
+        "--input_features", default="query", choices=("query", "query_url"), type=str
+    )
 
     args = parser.parse_args()
 
     labels_file = "labels.json"
 
-    if not os.path.exists(f"{args.out_path}/{args.model_name}"):
-        os.makedirs(f"{args.out_path}/{args.model_name}")
+    if not os.path.exists(f"{args.out_path}/{args.model_name}_{args.model_params}"):
+        os.makedirs(f"{args.out_path}/{args.model_name}_{args.model_params}")
 
     label_column = "Label"
-    data_column = "query"
+
+    if args.input_features == "query":
+        data_column = "query"
+    elif args.input_features == "query_url":
+        data_column = "query_url"
+    else:
+        raise ValueError("data_column can be only query or query_url")
+
+    if args.model_name == "xtremedistil":
+        model_name = "microsoft/xtremedistil-l6-h384-uncased"
+    elif args.model_name == "bert":
+        model_name = "bert-base-uncased"
 
     df = load_labelled_orcas(data_path=args.infile)
 
+    g_d = get_domains(df, "url")
+    d_p = remove_punctuation(g_d, "domain_names")
+    df = query_plus_url(d_p, "query", "domain_names")
+    print("preprocessed")
+
     label_dict = get_label_dict(df[label_column].unique().tolist())
 
-    with open(f"{args.out_path}/{args.model_name}/{labels_file}", "w") as outfile:
+    with open(
+        f"{args.out_path}/{args.model_name}_{args.model_params}/{labels_file}", "w"
+    ) as outfile:
         json.dump(label_dict, outfile)
 
     df["label"] = df[label_column].replace(label_dict)
 
-    tokenizer = BertTokenizer.from_pretrained("bert-base-uncased", do_lower_case=True)
+    tokenizer = BertTokenizer.from_pretrained(model_name, do_lower_case=True)
 
     df[data_column] = df[data_column].replace(np.nan, "0")
 
     model = BertForSequenceClassification.from_pretrained(
-        "bert-base-uncased",
+        model_name,
         num_labels=len(label_dict),
         output_attentions=False,
         output_hidden_states=False,
@@ -93,18 +120,18 @@ if __name__ == "__main__":
 
     # %%
 
-    batch_size = 32
+    batch_size = 64
     optimizer = AdamW(model.parameters(), lr=1e-5, eps=1e-8)
     epochs = 10
 
     dataloader_train = prepare_data(
-        df=df, data_type="train", data_column=data_column, label_column=label_column
+        df=df, data_type="train", data_column=data_column, label_column="label"
     )
     dataloader_validation = prepare_data(
         df=df,
         data_type="validation",
         data_column=data_column,
-        label_column=label_column,
+        label_column="label",
     )
 
     scheduler = get_linear_schedule_with_warmup(
@@ -155,7 +182,7 @@ if __name__ == "__main__":
 
         torch.save(
             model.state_dict(),
-            f"{args.out_path}/{args.model_name}/finetuned_BERT_epoch_{epoch}.model",
+            f"{args.out_path}/{args.model_name}_{args.model_params}/finetuned_BERT_epoch_{epoch}.model",
         )
 
         tqdm.write(f"\nEpoch {epoch}")
