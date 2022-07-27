@@ -93,7 +93,7 @@ if __name__ == "__main__":
 
     # %%
 
-    for model_version in range(1, 9):
+    for model_version in range(1, 10):
         print(f"{model_version=}")
         model.load_state_dict(
             torch.load(
