@@ -3,9 +3,8 @@
 
 This package serves as basis for the paper _"ORCAS-I: Queries Annotated with Intent using Weak Supervision"_
 
-Link to the paper: [![arXiv](https://img.shields.io/badge/arXiv-2205.00926-b31b1b.svg)](https://arxiv.org/abs/2205.00926)
+Link to the paper: [![DOI:10.1145/3477495.3531737](http://img.shields.io/badge/SIGIR_2022-https://doi.org/10.1145/3477495.3531737-1F7CFA.svg)](https://doi.org/10.1145/3477495.3531737) [![arXiv](https://img.shields.io/badge/arXiv-2205.00926-b31b1b.svg)](https://arxiv.org/abs/2205.00926) 
 
-DOI of the paper: https://doi.org/10.1145/3477495.3531737
 
 DOI of the dataset: [![DOI](https://researchdata.tuwien.ac.at/badge/DOI/10.48436/pp7xz-n9a06.svg)](https://doi.org/10.48436/pp7xz-n9a06)
 
